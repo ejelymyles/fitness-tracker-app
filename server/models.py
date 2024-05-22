@@ -14,9 +14,9 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, nullable=False)
     email = db.Column(db.String)
-    age  = db.Column(db.Integer)
-    height = db.Column(db.Integer)
-    weight = db.Column(db.Integer)
+    age  = db.Column(db.Integer, db.CheckConstraint('age > 0'))
+    height = db.Column(db.Integer, db.CheckConstraint('height > 0'))
+    weight = db.Column(db.Integer, db.CheckConstraint('weight > 0'))
 
     #add relationships 
 
@@ -64,11 +64,11 @@ class Log(db.Model, SerializerMixin):
     #add serialization rules 
 
     id = db.Column(db.Integer, primary_key=True)
-    sets = db.Column(db.Integer, nullable=False)
-    reps = db.Column(db.Integer, nullable=False)
-    weight  = db.Column(db.Integer)
-    distance = db.Column(db.Integer)
-    time = db.Column(db.Integer)
+    sets = db.Column(db.Integer, db.CheckConstraint('sets > 0'), nullable=False)
+    reps = db.Column(db.Integer, db.CheckConstraint('reps > 0'), nullable=False)
+    weight  = db.Column(db.Integer, db.CheckConstraint('weight > 0'))
+    distance = db.Column(db.Integer, db.CheckConstraint('distance > 0'))
+    time = db.Column(db.Time)
 
     #add relationships 
 
