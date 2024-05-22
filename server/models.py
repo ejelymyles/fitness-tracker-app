@@ -12,11 +12,17 @@ class User(db.Model, SerializerMixin):
     #add serialization rules 
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String, nullable=False)
+    username = db.Column(db.String, unique=True, nullable=False)
     email = db.Column(db.String)
     age  = db.Column(db.Integer, db.CheckConstraint('age > 0'))
     height = db.Column(db.Integer, db.CheckConstraint('height > 0'))
     weight = db.Column(db.Integer, db.CheckConstraint('weight > 0'))
+
+    @validates('email')
+    def validate_email(self, key, email):
+        if '@' not in email or not email.endswith('.com'):
+            raise ValueError('Email must contain "@" and end with ".com"')
+        return email 
 
     #add relationships 
 
@@ -31,10 +37,16 @@ class Exercise(db.Model, SerializerMixin):
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    category = db.Column(db.String, nullable=False) # must be cardio or strength 
+    category = db.Column(db.String, nullable=False)
     muscle_group = db.Column(db.String, nullable=False)
     equipment = db.Column(db.String)
     description = db.Column(db.String)
+
+    @validates('category')
+    def validate_category(self, key, category):
+        if category not in ['cardio', 'strength']:
+            raise ValueError('Category must be either "cardio" or "strength"')
+        return category
 
      #add relationships 
 
