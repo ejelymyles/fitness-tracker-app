@@ -1,6 +1,8 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
+from sqlalchemy import Time, Date
+
 
 from config import db
 
@@ -29,7 +31,7 @@ class Exercise(db.Model, SerializerMixin):
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    category = db.Column(db.String, nullable=False)
+    category = db.Column(db.String, nullable=False) # must be cardio or strength 
     muscle_group = db.Column(db.String, nullable=False)
     equipment = db.Column(db.String)
     description = db.Column(db.String)
@@ -48,7 +50,7 @@ class Workout(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
-    duration = db.Column(db.Integer)
+    duration = db.Column(db.Time)
 
      #add relationships 
 
@@ -62,8 +64,8 @@ class Log(db.Model, SerializerMixin):
     #add serialization rules 
 
     id = db.Column(db.Integer, primary_key=True)
-    sets = db.Column(db.Integer)
-    reps = db.Column(db.Integer)
+    sets = db.Column(db.Integer, nullable=False)
+    reps = db.Column(db.Integer, nullable=False)
     weight  = db.Column(db.Integer)
     distance = db.Column(db.Integer)
     time = db.Column(db.Integer)
