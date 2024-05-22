@@ -8,7 +8,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db ##import new models 
+from models import db, User, Exercise, Workout, Log
 
 if __name__ == '__main__':
 
