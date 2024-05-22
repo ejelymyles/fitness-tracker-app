@@ -3,7 +3,6 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
 from sqlalchemy import Time, Date
 
-
 from config import db
 
 class User(db.Model, SerializerMixin):
@@ -14,7 +13,7 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True, nullable=False)
     email = db.Column(db.String)
-    age  = db.Column(db.Integer, db.CheckConstraint('age > 0'))
+    age = db.Column(db.Integer, db.CheckConstraint('age > 0'))
     height = db.Column(db.Integer, db.CheckConstraint('height > 0'))
     weight = db.Column(db.Integer, db.CheckConstraint('weight > 0'))
 
@@ -24,7 +23,8 @@ class User(db.Model, SerializerMixin):
             raise ValueError('Email must contain "@" and end with ".com"')
         return email 
 
-    #add relationships 
+    #ONE-to-many relationship with Workouts"
+    workouts = db.relationship('Workout', back_populates="user")
 
     def __repr__(self):
         return f'<User: {self.username} Email: {self.email} Age: {self.age} Height: {self.height} Weight: {self.weight}'
@@ -48,7 +48,8 @@ class Exercise(db.Model, SerializerMixin):
             raise ValueError('Category must be either "cardio" or "strength"')
         return category
 
-     #add relationships 
+    #many-to-many relationship with workouts stored through logs
+    logs = db.relationship('Log', back_populates="exercise") 
 
     def __repr__(self):
         return f'<Exercise: {self.name} - {self.category} - {self.muscle_group} - {self.equipment} - {self.description}>'
@@ -64,7 +65,12 @@ class Workout(db.Model, SerializerMixin):
     date = db.Column(db.Date, nullable=False)
     duration = db.Column(db.Time)
 
-     #add relationships 
+    #one-to-MANY relationship with User
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship('User', back_populates="workouts")
+
+    # many-to-many relationship with exercise stored through logs)
+    logs = db.relationship('Log', back_populates="workout")
 
     def __repr__(self):
         return f'< Date:{self.date} Duration:{self.duration}>'
@@ -82,7 +88,12 @@ class Log(db.Model, SerializerMixin):
     distance = db.Column(db.Integer, db.CheckConstraint('distance > 0'))
     time = db.Column(db.Time)
 
-    #add relationships 
+    #Storing many-to-many relationship between exercise and workouts
+    exercise_id = db.Column(db.Integer, db.ForeignKey('exercises.id'))
+    workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
+
+    exercise = db.relationship('Exercise', back_populates="logs")
+    workout = db.relationship('Workout', back_populates="logs")
 
     def __repr__(self):
         return f'<Log Sets: {self.sets} Reps: {self.reps} Weight: {self.weight} Distance: {self.distance} Time: {self.time}>'
