@@ -9,6 +9,7 @@ class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
     #add serialization rules 
+    serialize_rules = ('-workouts.user',)
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True, nullable=False)
@@ -34,6 +35,7 @@ class Exercise(db.Model, SerializerMixin):
     __tablename__ = 'exercises'
 
      #add serialization rules 
+     serialize_rules = ('-logs.exercise',)
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
@@ -60,6 +62,7 @@ class Workout(db.Model, SerializerMixin):
     __tablename__ = 'workouts'
 
      #add serialization rules 
+     serialize_rules = ('-user.workouts', '-logs.workout',)
 
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
@@ -80,6 +83,7 @@ class Log(db.Model, SerializerMixin):
     __tablename__ = 'logs'
 
     #add serialization rules 
+    serialize_rules = ('-exercise.logs', '-workout.logs',)
 
     id = db.Column(db.Integer, primary_key=True)
     sets = db.Column(db.Integer, db.CheckConstraint('sets > 0'), nullable=False)
