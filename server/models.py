@@ -35,7 +35,7 @@ class Exercise(db.Model, SerializerMixin):
     __tablename__ = 'exercises'
 
      #add serialization rules 
-     serialize_rules = ('-logs.exercise',)
+    serialize_rules = ('-logs.exercise',)
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
@@ -62,11 +62,11 @@ class Workout(db.Model, SerializerMixin):
     __tablename__ = 'workouts'
 
      #add serialization rules 
-     serialize_rules = ('-user.workouts', '-logs.workout',)
+    serialize_rules = ('-user.workouts', '-logs.workout',)
 
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
-    duration = db.Column(db.Time)
+    duration = db.Column(db.Integer)
 
     #one-to-MANY relationship with User
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -90,7 +90,7 @@ class Log(db.Model, SerializerMixin):
     reps = db.Column(db.Integer, db.CheckConstraint('reps > 0'), nullable=False)
     weight  = db.Column(db.Integer, db.CheckConstraint('weight > 0'))
     distance = db.Column(db.Integer, db.CheckConstraint('distance > 0'))
-    time = db.Column(db.Time)
+    time = db.Column(db.Integer)
 
     #Storing many-to-many relationship between exercise and workouts
     exercise_id = db.Column(db.Integer, db.ForeignKey('exercises.id'))
