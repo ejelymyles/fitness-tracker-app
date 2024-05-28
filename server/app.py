@@ -45,17 +45,16 @@ class UsersByID(Resource):
             return {"Error":"Car not found"}, 404
 
     # def patch(self, id):
-    #     car = Car.query.get(id)
-    #     if car:
+    #     user = User.query.filter_by(id=id).first()
+    #     if user:
     #         request_data = request.get_json()
     #         for attr, value in request_data.items():
-    #             setattr(car, attr, value)
-        
-    #         db.session.commit()
+    #             setattr(user, attr, value)
 
-    #         return car.to_dict(), 200
+    #         db.session.commit()
+    #         return user.to_dict(), 200
     #     else:
-    #         return{"Error": "Car not found"}, 404
+    #         return{"Error": "User not found"}, 404
 
 
     # def delete(self, id):
@@ -100,18 +99,17 @@ class WorkoutsByID(Resource):
             return{'Workout not found'}, 404
         return workout.to_dict(), 200
 
-    # def patch(self, id):
-    #     car = Car.query.get(id)
-    #     if car:
+    # def patch(self, user_id, workout_id):
+    #     workout = Workout.query.filter_by(user_id=user_id, id=workout_id).first()
+    #     if workout:
     #         request_data = request.get_json()
     #         for attr, value in request_data.items():
-    #             setattr(car, attr, value)
+    #             setattr(workout, attr, value)
         
     #         db.session.commit()
-
-    #         return car.to_dict(), 200
+    #         return workout.to_dict(), 200
     #     else:
-    #         return{"Error": "Car not found"}, 404
+    #         return{"Error": "Workout not found"}, 404
 
 
     # def delete(self, user_id, workout_id):
@@ -173,18 +171,22 @@ class LogsByID(Resource):
         return log.to_dict(), 200
         
 
-    # def patch(self, id):
-    #     car = Car.query.get(id)
-    #     if car:
+    # def patch(self, user_id, workout_id, log_id):
+    #     workout = Workout.query.filter_by(user_id=user_id, id=workout_id).first()
+    #     if not workout:
+    #         return {'message': 'Workout not found'}, 404
+
+    #     log = Log.query.filter_by(workout_id=workout.id, id=log_id).first()
+    #     if log:
     #         request_data = request.get_json()
     #         for attr, value in request_data.items():
-    #             setattr(car, attr, value)
-        
-    #         db.session.commit()
+    #             if hasattr(log, attr):
+    #                 setattr(log, attr, value)
 
-    #         return car.to_dict(), 200
+    #         db.session.commit()
+    #         return log.to_dict(), 200
     #     else:
-    #         return{"Error": "Car not found"}, 404
+    #         return{"Error": "Log not found"}, 404
 
 
 
@@ -241,17 +243,16 @@ class ExercisesByID(Resource):
             return {"Error":"Car not found"}, 404
 
     # def patch(self, id):
-    #     car = Car.query.get(id)
-    #     if car:
+    #     exercise = Exercise.query.filter_by(id=id).first()
+    #     if exercise:
     #         request_data = request.get_json()
     #         for attr, value in request_data.items():
-    #             setattr(car, attr, value)
-        
-    #         db.session.commit()
+    #             setattr(exercise, attr, value)
 
-    #         return car.to_dict(), 200
+    #         db.session.commit()
+    #         return exercise.to_dict(), 200
     #     else:
-    #         return{"Error": "Car not found"}, 404
+    #         return{"Error": "Exercise not found"}, 404
 
 api.add_resource(ExercisesByID, '/exercises/<int:id>')
 
