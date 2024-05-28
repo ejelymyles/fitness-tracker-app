@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, UNSAFE_ErrorResponseImpl } from "react-router-dom";
+import Header from './Header';
+import ExerciseList from "./ExerciseList";
 
 function App() {
-  return <h1>Fitness App </h1>;
+  return(
+    <div>
+      <Header />
+      <Routes>
+        <Route path="exercises" element={<ExerciseList />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
