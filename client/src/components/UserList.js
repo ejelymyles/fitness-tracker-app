@@ -14,7 +14,7 @@ function UserList() {
 
   return (
     <div>
-        <h1 className="full-list-header">Search For Users</h1>
+        <h2 className="full-list-header">Search For Users</h2>
         <ul className="user card-container">{users.map((user) => <UserCard key={user.id} user={user}/>)}</ul>
     </div>
   );

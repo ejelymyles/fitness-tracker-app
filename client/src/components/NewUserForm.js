@@ -22,7 +22,7 @@ function NewUserForm(){
                 <input id="email" name='email' />
                 <br />
 
-                <label htmlFor='username'>Age</label>
+                <label htmlFor='age'>Age</label>
                 <br />
                 <input id="age" name='age' />
                 <br />
@@ -34,7 +34,7 @@ function NewUserForm(){
 
                 <label htmlFor='weight'>Wieght</label>
                 <br />
-                
+
                 <input id="weight" name="weight" />
                 <br />
                 <button type="submit">Submit</button>
