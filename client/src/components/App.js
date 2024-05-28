@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, UNSAFE_ErrorResponseImpl } from "react-router-dom";
 import Header from './Header';
-import ExerciseList from "./ExerciseList";
+import ExercisePage from "./ExercisePage";
 import NewUserForm from "./NewUserForm.js";
+import MyFitnessPage from "./MyFitnessPage";
 
 function App() {
   return(
     <div>
       <Header />
       <Routes>
-        <Route path="exercises" element={<ExerciseList />} />
+        <Route path="exercises" element={<ExercisePage />} />
         <Route path="newuser" element={<NewUserForm />}/>
+        <Route path="myfitness" element={<MyFitnessPage />}/>
       </Routes>
     </div>
   );

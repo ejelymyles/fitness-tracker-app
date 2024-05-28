@@ -14,7 +14,7 @@ function ExerciseList() {
 
   return (
     <div>
-        <h1 className="full-list-header">Search For Exercises</h1>
+        <h2 className="full-list-header">Search For Exercises</h2>
         <ul className="exercise card-container">{exercises.map((exercise) => <ExerciseCard key={exercise.id} exercise={exercise}/>)}</ul>
     </div>
   );
