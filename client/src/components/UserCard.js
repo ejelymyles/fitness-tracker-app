@@ -15,6 +15,10 @@ function UserCard({ user }){
                 <p>weight: {weight}</p> 
                 <NavLink to={`/users/${id}`} className="cardnav-link">View User Profile</NavLink> 
             </li>  
+            <br />
+            <button>Edit</button>
+            <button>Delete</button>
+            <hr />
         </div>
     )
 }

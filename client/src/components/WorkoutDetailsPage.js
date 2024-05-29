@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LogList from "./LogList";
+import NewLogForm from "./NewLogForm";
 
 function WorkoutDetails() {
   const [workout, setWorkout] = useState(null);
@@ -35,7 +36,7 @@ function WorkoutDetails() {
       </div>
       <hr />
       <div>
-        {/* RENDER NEW LOG FORM  */}
+        <NewLogForm />
       </div>
     </div>
   );

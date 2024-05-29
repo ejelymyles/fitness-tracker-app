@@ -12,7 +12,10 @@ function WorkoutCard({ workout }){
                 <p>Date: {date}</p>
                 <p>Duration: {duration} minutes</p>
                 <NavLink to={`/users/${user_id}/workouts/${id}`} className="cardnav-link">View Workout Details</NavLink> 
-            </li>  
+            </li> 
+            <br />
+            <button>Edit</button>
+            <button>Delete</button>
         </div>
     )
 }

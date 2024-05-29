@@ -14,6 +14,8 @@ function ExerciseCard({ exercise }){
                 <p>description: {description}</p> 
                 <p>exercise reference: {id}</p>
             </li>  
+            <button>Edit</button>
+            <button>Delete</button>
         </div>
     )
 }
