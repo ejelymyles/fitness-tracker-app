@@ -3,12 +3,13 @@ import { NavLink } from "react-router-dom";
 
 function LogCard({ log }){
 
-    const{id, exercise_id, sets, reps, weight, distance, time } = log
+    const{id, exercise_id, sets, reps, weight, distance, time, exercise } = log
+    const exerciseName = exercise ? exercise.name : null;
 
     return(
         <div>
             <li className="card">
-                <h4> Exercise reference: {exercise_id}</h4>
+                <p> Exercise: {exerciseName}</p>
                 <p>Sets: {sets}</p>
                 <p>Reps: {reps}</p>
                 <p>Weight: {weight} lbs</p>
@@ -19,6 +20,7 @@ function LogCard({ log }){
             <br />
             <button>Edit</button>
             <button>Delete</button> 
+            <hr />
         </div>
     )
 }
