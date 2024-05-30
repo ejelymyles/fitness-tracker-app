@@ -79,15 +79,16 @@ class Workouts(Resource):
         workout_list = [workout.to_dict() for workout in workouts]
         return workout_list, 200
 
-    # def post(self, user_id):
-    #     new_workout = Workout(
-    #         date=datetime.strptime(request.form['date'], '%Y-%m-%d').date(),
-    #         duration=int(request.form['duration']),
-    #         user_id=user_id
-    #     )
-    #     db.session.add(new_workout)
-    #     db.session.commit()
-    #     return make_response(new_workout.to_dict(), 201)
+    def post(self, user_id):
+        data = request.get_json()
+        new_workout = Workout(
+            date=datetime.strptime(data['date'], '%Y-%m-%d').date(),
+            duration=data['duration'],
+            user_id=user_id
+        )
+        db.session.add(new_workout)
+        db.session.commit()
+        return make_response(new_workout.to_dict(), 201)
 
 
 api.add_resource(Workouts, '/users/<int:user_id>/workouts')
