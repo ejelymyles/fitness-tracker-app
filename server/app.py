@@ -257,6 +257,12 @@ class ExercisesByID(Resource):
     #     else:
     #         return{"Error": "Exercise not found"}, 404
 
+    def delete(self, id):
+        exercise = Exercise.query.filter_by(id=id).first()
+        db.session.delete(exercise)
+        db.session.commit()
+        return make_response({}, 204)
+
 api.add_resource(ExercisesByID, '/exercises/<int:id>')
 
 
