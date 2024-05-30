@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes, UNSAFE_ErrorResponseImpl } from
 import Header from './Header';
 import ExercisePage from "./ExercisePage";
 import NewUserForm from "./NewUserForm.js";
-// import MyFitnessPage from "./MyFitnessPage";
 import UserProfile from "./UserProfile";
 import WorkoutDetails from "./WorkoutDetailsPage";
 import UserList from "./UserList";
