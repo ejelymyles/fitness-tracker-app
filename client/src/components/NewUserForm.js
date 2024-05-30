@@ -1,41 +1,85 @@
 import React, { useState } from "react";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 
 function NewUserForm({addNewUser}){
 
-// manage state of formData
-// handle change function
-// handle submit  -> make POST to /users -> reset the form values and update state 
+    const formik = useFormik({
+        initialValues: {
+            username: "",
+            email: "",
+            age: "",
+            height: "",
+            weight: "",
+        },
+        validationSchema: Yup.object({
+            username: Yup.string().required("Username is required"),
+            email: Yup.string().email("Invalid email address").required("Email is required"),
+            age: Yup.number().required("Age is required").positive("Age must be a positive number").integer("Age must be an integer"),
+            height: Yup.number().required("Height is required").positive("Height must be a positive number").integer("Height must be an integer"),
+            weight: Yup.number().required("Weight is required").positive("Weight must be a positive number").integer("Weight must be an integer"),
+        }),
+        onSubmit: (values, {setSubmitting, resetForm, setErrors}) => {
+            fetch("/users", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values),
+            })
+            .then((r) => {
+                if (r.ok) {
+                    return r.json();
+                } else {
+                    return r.json().then((err) => Promise.reject(err));
+                }
+            })
+            .then((newUser) => {
+                addNewUser(newUser);
+                resetForm();
+            })
+            .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))
+            .finally(() => setSubmitting(false));
+        }
+    })
+
+
 
 
     return(
         <div className='form'>
             <h1 className="full-list-header">Add New Workout Partners</h1>
-            <form >
+            <form onSubmit={formik.handleSubmit} >
                 <label htmlFor='username'>Username</label>
                 <br />
-                <input id="username" name='username' />
+                <input id="username" name='username' type="text" onChange={formik.handleChange} value={formik.values.username}/>
+                <p style={{ color: 'red'}}>{formik.errors.username}</p>
                 <br />
 
                 <label htmlFor='email'>Email Address</label>
                 <br />
-                <input id="email" name='email' />
+                <input id="email" name='email' type="text" onChange={formik.handleChange} value={formik.values.email} />
+                <p style={{ color: 'red'}}>{formik.errors.email}</p>
                 <br />
 
                 <label htmlFor='age'>Age</label>
                 <br />
-                <input id="age" name='age' />
+                <input id="age" name='age' type="text" onChange={formik.handleChange} value={formik.values.age} />
+                <p style={{ color: 'red'}}>{formik.errors.age}</p>
                 <br />
 
                 <label htmlFor='height'>Height</label>
                 <br />
-                <input id="height" name='height' />
+                <input id="height" name='height' type="text" onChange={formik.handleChange} value={formik.values.height} />
+                <p style={{ color: 'red'}}>{formik.errors.height}</p>
                 <br />
 
                 <label htmlFor='weight'>Wieght</label>
                 <br />
 
-                <input id="weight" name="weight" />
+                <input id="weight" name="weight" type="text" onChange={formik.handleChange} value={formik.values.height}/>
+                <p style={{ color: 'red'}}>{formik.errors.weight}</p>
                 <br />
                 <button type="submit">Submit</button>
             </form>
