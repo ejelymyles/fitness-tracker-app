@@ -20,12 +20,16 @@ function App() {
       })
     }, [])
 
+  function addNewUser(newUser){
+    setUsers((prevData) => [...prevData, newUser]);
+  }
+
   return(
     <div>
       <Header />
       <Routes>
         <Route path="/exercises" element={<ExercisePage />} />
-        <Route path="/newuser" element={<NewUserForm />}/>
+        <Route path="/newuser" element={<NewUserForm addNewUser={addNewUser}/>}/>
         <Route path="/myfitness" element={<UserList users={users} />}/>
         <Route path="/users/:id" element={<UserProfile />}/>
         <Route path="/users/:user_id/workouts/:workout_id" element={<WorkoutDetails />}/>

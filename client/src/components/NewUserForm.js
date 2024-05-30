@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 
-function NewUserForm(){
+function NewUserForm({addNewUser}){
 
 // manage state of formData
 // handle change function
