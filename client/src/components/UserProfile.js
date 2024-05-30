@@ -5,8 +5,10 @@ import NewWorkoutForm from "./NewWorkoutForm";
 
 function UserProfile() {
   const [user, setUser] = useState(null);
+  const [workouts, setWorkouts] = useState([]);
   const { id } = useParams();
 
+//fetch user data to display on user profile
   useEffect(() => {
     fetch(`/users/${id}`)
       .then((r) => r.json())
@@ -15,12 +17,27 @@ function UserProfile() {
       });
   }, [id]);
 
+  //fetch the users workout data to pass to their workoutlist
+  useEffect(() => {
+    fetch(`/users/${id}/workouts`)
+    .then((r) =>r.json())
+    .then((workouts) => {
+      setWorkouts(workouts);
+    })
+  }, [id]);
+
+  // build function to update state and pass it to the workout form
+  function addNewWorkout(newWorkout){
+    setWorkouts((prevData) => [...prevData, newWorkout]);
+  }
+
 
   if (!user) {
     return <div>Loading...</div>;
   }
 
   const { username, email, age, height, weight } = user;
+
 
   return (
     <div>
@@ -34,11 +51,11 @@ function UserProfile() {
       </div>
       <hr />
       <div>
-        <WorkoutList />
+        <WorkoutList workouts={workouts}/>
       </div>
       <hr />
       <div>
-        <NewWorkoutForm />
+        <NewWorkoutForm addNewWorkout={addNewWorkout} />
       </div>
     </div>
   );

@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import WorkoutCard from "./WorkoutCard";
 
-function WorkoutList() {
-  const [workouts, setWorkouts] = useState([]);
-  const { id } = useParams();
+function WorkoutList({ workouts }) {
+//   const [workouts, setWorkouts] = useState([]);
+//   const { id } = useParams();
 
-  useEffect(() => {
-      fetch(`/users/${id}/workouts`)
-      .then((r) =>r.json())
-      .then((workouts) => {
-        setWorkouts(workouts);
-      })
-    }, [id])
+//   useEffect(() => {
+//       fetch(`/users/${id}/workouts`)
+//       .then((r) =>r.json())
+//       .then((workouts) => {
+//         setWorkouts(workouts);
+//       })
+//     }, [id])
 
   return (
     <div>
