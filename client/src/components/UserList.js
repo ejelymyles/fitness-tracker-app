@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserCard from "./UserCard";
 
-function UserList() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-      fetch("/users")
-      .then((r) =>r.json())
-      .then((users) => {
-        setUsers(users);
-      })
-    }, [])
+function UserList({users}) {
 
   return (
     <div>

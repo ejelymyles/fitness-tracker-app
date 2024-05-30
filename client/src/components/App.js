@@ -9,13 +9,24 @@ import WorkoutDetails from "./WorkoutDetailsPage";
 import UserList from "./UserList";
 
 function App() {
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+      fetch("/users")
+      .then((r) =>r.json())
+      .then((users) => {
+        setUsers(users);
+      })
+    }, [])
+
   return(
     <div>
       <Header />
       <Routes>
         <Route path="/exercises" element={<ExercisePage />} />
         <Route path="/newuser" element={<NewUserForm />}/>
-        <Route path="/myfitness" element={<UserList />}/>
+        <Route path="/myfitness" element={<UserList users={users} />}/>
         <Route path="/users/:id" element={<UserProfile />}/>
         <Route path="/users/:user_id/workouts/:workout_id" element={<WorkoutDetails />}/>
       </Routes>
