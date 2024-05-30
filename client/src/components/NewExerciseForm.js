@@ -1,103 +1,83 @@
 import React, { useState } from "react";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 
 function NewExerciseForm({ addNewExercise}){
 
-    // manage state of formData
-    const [formData, setFormData] = useState({
-        name: "",
-        category: "",
-        muscle_group: "",
-        equipment: "",
-        description: "",
-    });
-
-    const [errors, setErrors] = useState([]);
-
-    // handle change function
-    function handleChange(e){
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        })
-    }
-
-    // handle submit  -> make POST to /users -> reset the form values and update state
-    function handleSubmit (e){
-        e.preventDefault();
-        fetch("/exercises", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "name": formData.name,
-                "category": formData.category,
-                "muscle_group": formData.muscle_group,
-                "equipment": formData.equipment,
-                "description": formData.description
+    const formik = useFormik({
+        initialValues: {
+            name: "",
+            category: "",
+            muscle_group: "",
+            equipment: "",
+            description: "",
+        },
+        validationSchema: Yup.object({
+            name: Yup.string().required("Name is required"),
+            category: Yup.string().oneOf(["cardio", "strength"], "Category must be either 'cardio' or 'strength'").required("Category is required"),
+            muscle_group: Yup.string().required("Muscle group is required"),
+            equipment: Yup.string(),
+            description: Yup.string()
+        }),
+        onSubmit: (values, {setSubmitting, resetForm, setErrors}) => {
+            fetch("/exercises", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values),
             })
-        })
-        //error handling 
-        .then((r) => {
-            if (r.ok) {
-                return r.json();
-            } else{
-                return r.json().then((err) => Promise.reject(err));
-            }
-        })
-        // pass a function to update state of exercises from wherever that data is held
-        .then((newExercise) => {
-            addNewExercise(newExercise);
-            setFormData({
-                name: "",
-                category: "",
-                muscle_group: "",
-                equipment: "",
-                description: "",
-            });
-        })
-        .catch((err) => setErrors(err.errors || ["An error occured"]));
-    }
+            .then((r) => {
+                if (r.ok) {
+                    return r.json();
+                } else {
+                    return r.json().then((err) => Promise.reject(err));
+                }
+            })
+            .then((newExercise) => {
+                addNewExercise(newExercise);
+                resetForm();
+            })
+            .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))
+            .finally(() => setSubmitting(false));
+        }
+    })
  
     return(
         <div className='form'>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={formik.handleSubmit}>
                 <label htmlFor='name'>Name</label>
                 <br />
-                <input id="name" name='name' type="text" value={formData.name} onChange={handleChange} />
+                <input id="name" name='name' type="text" onChange={formik.handleChange} value={formik.values.name} />
+                <p style={{ color: 'red'}}>{formik.errors.name}</p>
                 <br />
 
                 <label htmlFor='category'>category</label>
                 <br />
-                <input id="caregory" name='category' type="text" value={formData.category} onChange={handleChange}/>
+                <input id="category" name='category' type="text" onChange={formik.handleChange} value={formik.values.category}/>
+                <p style={{ color: 'red'}}>{formik.errors.category}</p>
                 <br />
 
                 <label htmlFor='muscle_group'>Muscle Group</label>
                 <br />
-                <input id="muscle_group" name='muscle_group' type="text" value={formData.muscle_group} onChange={handleChange}/>
+                <input id="muscle_group" name='muscle_group' type="text" onChange={formik.handleChange} value={formik.values.muscle_group}/>
+                <p style={{ color: 'red'}}>{formik.errors.muscle_group}</p>
                 <br />
 
                 <label htmlFor='equipment'>Equipment Needed</label>
                 <br />
-                <input id="equipment" name='equipment'type="text" value={formData.equipment} onChange={handleChange}/>
+                <input id="equipment" name='equipment'type="text" onChange={formik.handleChange} value={formik.values.equipment}/>
+                <p style={{ color: 'red'}}>{formik.errors.equipment}</p>
                 <br />
 
                 <label htmlFor='description'>Description</label>
                 <br />
-                <input id="description" name="description" type="text" value={formData.description} onChange={handleChange} />
+                <input id="description" name="description" type="text" onChange={formik.handleChange} value={formik.values.description} />
+                <p style={{ color: 'red'}}>{formik.errors.description}</p>
                 <br />
                 <button type="submit">Post</button>
             </form>
-            {errors.length > 0 && (
-                <div className="error-messages">
-                    {errors.map((error, index) => (
-                        <p key={index} style={{ color: "red" }}>
-                            {error}
-                        </p>
-                    ))}
-                </div>
-                )}
         </div>
     )
 }

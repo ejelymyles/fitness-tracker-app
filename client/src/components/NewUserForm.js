@@ -78,7 +78,7 @@ function NewUserForm({addNewUser}){
                 <label htmlFor='weight'>Wieght</label>
                 <br />
 
-                <input id="weight" name="weight" type="text" onChange={formik.handleChange} value={formik.values.height}/>
+                <input id="weight" name="weight" type="text" onChange={formik.handleChange} value={formik.values.weight}/>
                 <p style={{ color: 'red'}}>{formik.errors.weight}</p>
                 <br />
                 <button type="submit">Submit</button>
