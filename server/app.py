@@ -10,6 +10,7 @@ from flask_restful import Resource
 from config import app, db, api
 # Add your model imports
 from models import User, Exercise, Workout, Log
+from datetime import datetime
 
 
 
@@ -66,8 +67,6 @@ class UsersByID(Resource):
 
 
 api.add_resource(UsersByID, '/users/<int:id>')
-
-
 
 
 

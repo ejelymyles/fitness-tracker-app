@@ -46,10 +46,10 @@ function NewWorkoutForm({ addNewWorkout }){
     return(
         <div className='form'>
             <h3 className="full-list-header">Add New Workout Session</h3>
-            <form >
+            <form onSubmit={formik.handleSubmit} >
                 <label htmlFor='date'>Date</label>
                 <br />
-                <input id="date" name='date' type="text" onChange={formik.handleChange} value={formik.values.date}/>
+                <input id="date" name='date' type="text" placeholder="YYYY-MM-DD" onChange={formik.handleChange} value={formik.values.date}/>
                 <p style={{ color: 'red'}}>{formik.errors.date}</p>
                 <br />
 
