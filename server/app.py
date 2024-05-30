@@ -19,17 +19,18 @@ class Users(Resource):
         users = [user.to_dict() for user in User.query.all()]
         return users, 200
 
-    # def post(self):
-    #     new_user = User(
-    #         username=request.form['username'],
-    #         email=request.form['email'],
-    #         age=int(request.form['age']),
-    #         height=int(request.form['height']),
-    #         weight=int(request.form['weight'])
-    #     )
-    #     db.session.add(new_user)
-    #     db.session.commit()
-    #     return make_response(new_user.to_dict(), 201)
+    def post(self):
+        data = request.get_json()
+        new_user = User(
+            username=data['username'],
+            email=data['email'],
+            age=data['age'],
+            height=data['height'],
+            weight=data['weight']
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        return make_response(new_user.to_dict(), 201)
 
 
 api.add_resource(Users, '/users')
@@ -142,19 +143,20 @@ class Logs(Resource):
         logs = Log.query.filter_by(workout_id=workout.id).all()
         return[log.to_dict() for log in logs], 200
 
-    def post(self, user_id, workout_id):
-        new_log = Log(
-            sets=int(request.form['sets']),
-            reps=int(request.form['reps']),
-            weight=int(request.form['weight']),
-            distance=int(request.form['distance']),
-            time=int(request.form['time']),
-            exercise_id=int(request.form['exercise_id']),
-            workout_id=workout_id
-        )
-        db.session.add(new_log)
-        db.session.commit()
-        return make_response(new_log.to_dict(), 201)
+    # def post(self, user_id, workout_id):
+    #     data = request.get_json()
+    #     new_log = Log(
+    #         sets=data['sets'],
+    #         reps=data['reps'],
+    #         weight=data['weight'],
+    #         distance=data['distance'],
+    #         time=data['time'],
+    #         exercise_id=data['exercise_id'],
+    #         workout_id=workout_id
+    #     )
+    #     db.session.add(new_log)
+    #     db.session.commit()
+    #     return make_response(new_log.to_dict(), 201)
 
 api.add_resource(Logs, '/users/<int:user_id>/workouts/<int:workout_id>/logs')
 
