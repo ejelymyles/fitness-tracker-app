@@ -18,12 +18,18 @@ function ExercisePage(){
         setExercises((prevData) => [...prevData, newExercise]);
     }
 
+    // const handleDelete = (exerciseId) => {
+    //     setExercises(exercises.filter((exercise) => exercise.id !== exerciseId));
+    //   };
+
+
+
     return(
         <div>
             <h2>Post A New Exercise To The Community</h2>
             <NewExerciseForm addNewExercise={addNewExercise}/>
             <hr />
-            <ExerciseList exercises={exercises}/>
+            <ExerciseList exercises={exercises} onDelete={handleDelete}/>
         </div>
     )
 }

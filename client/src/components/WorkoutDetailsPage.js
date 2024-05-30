@@ -5,8 +5,10 @@ import NewLogForm from "./NewLogForm";
 
 function WorkoutDetails() {
   const [workout, setWorkout] = useState(null);
+  const [logs, setLogs] = useState([]);
   const { user_id, workout_id } = useParams();
 
+  // fetch the users specific workout to dislay on the workout details page
   useEffect(() => {
     fetch(`/users/${user_id}/workouts/${workout_id}`)
       .then((r) => r.json())
@@ -15,12 +17,27 @@ function WorkoutDetails() {
       });
   }, [user_id, workout_id]);
 
+  //fetch the workouts log informtation to pass to loglist
+  useEffect(() => {
+    fetch(`/users/${user_id}/workouts/${workout_id}/logs`)
+      .then((r) => r.json())
+      .then((logs) => {
+        setLogs(logs);
+      });
+  }, [user_id, workout_id]);
+
+   // build function to update state and pass it to the newLog form
+   function addNewLog(newLog){
+    setLogs((prevData) => [...prevData, newLog]);
+  }
+
 
   if (!workout) {
     return <div>Loading...</div>;
   }
 
   const { date, duration } = workout;
+
 
 
   return (
@@ -32,11 +49,11 @@ function WorkoutDetails() {
       </div>
       <hr />
       <div>
-        <LogList />
+        <LogList logs={logs}/>
       </div>
       <hr />
       <div>
-        <NewLogForm />
+        <NewLogForm addNewLog={addNewLog}/>
       </div>
     </div>
   );

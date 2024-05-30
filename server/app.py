@@ -143,20 +143,20 @@ class Logs(Resource):
         logs = Log.query.filter_by(workout_id=workout.id).all()
         return[log.to_dict() for log in logs], 200
 
-    # def post(self, user_id, workout_id):
-    #     data = request.get_json()
-    #     new_log = Log(
-    #         sets=data['sets'],
-    #         reps=data['reps'],
-    #         weight=data['weight'],
-    #         distance=data['distance'],
-    #         time=data['time'],
-    #         exercise_id=data['exercise_id'],
-    #         workout_id=workout_id
-    #     )
-    #     db.session.add(new_log)
-    #     db.session.commit()
-    #     return make_response(new_log.to_dict(), 201)
+    def post(self, user_id, workout_id):
+        data = request.get_json()
+        new_log = Log(
+            sets=data['sets'],
+            reps=data['reps'],
+            weight=data['weight'],
+            distance=data['distance'],
+            time=data['time'],
+            exercise_id=data['exercise_id'],
+            workout_id=workout_id
+        )
+        db.session.add(new_log)
+        db.session.commit()
+        return make_response(new_log.to_dict(), 201)
 
 api.add_resource(Logs, '/users/<int:user_id>/workouts/<int:workout_id>/logs')
 

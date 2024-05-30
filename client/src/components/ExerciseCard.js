@@ -1,8 +1,23 @@
 import React from "react";
 
-function ExerciseCard({ exercise }){
+function ExerciseCard({ exercise, onDelete }){
 
     const{id, name, category, muscle_group, equipment, description} = exercise
+
+    // const handleDelete = () => {
+    //     fetch(`/exercise/${id}`, {
+    //         method: "DELETE",
+    //     })
+    //     .then((response) =>{
+    //         if (!response.ok) {
+    //             throw new Error("Network response error");
+    //         }
+    //         onDelete(id);
+    //     })
+    //     .catch((error) => {
+    //         console.error("There was a problem deleting the exercise:", error);
+    //     })
+    // }
 
     return(
         <div>
@@ -15,7 +30,7 @@ function ExerciseCard({ exercise }){
                 <p>exercise reference: {id}</p>
             </li>  
             <button>Edit</button>
-            <button>Delete</button>
+            <button onClick={handleDelete}>Delete</button>
         </div>
     )
 }
