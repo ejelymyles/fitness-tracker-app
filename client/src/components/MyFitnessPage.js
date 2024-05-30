@@ -1,13 +1,13 @@
-import React from "react";
-import UserList from "./UserList";
+// import React from "react";
+// import UserList from "./UserList";
 
-function MyFitnessPage(){
+// function MyFitnessPage(){
 
-    return(
-        <div>
-            <UserList />
-        </div>
-    )
-}
+//     return(
+//         <div>
+//             <UserList />
+//         </div>
+//     )
+// }
 
-export default MyFitnessPage;
+// export default MyFitnessPage;

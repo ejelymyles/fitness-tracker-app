@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Route, Routes, UNSAFE_ErrorResponseImpl } from
 import Header from './Header';
 import ExercisePage from "./ExercisePage";
 import NewUserForm from "./NewUserForm.js";
-import MyFitnessPage from "./MyFitnessPage";
+// import MyFitnessPage from "./MyFitnessPage";
 import UserProfile from "./UserProfile";
 import WorkoutDetails from "./WorkoutDetailsPage";
+import UserList from "./UserList";
 
 function App() {
   return(
@@ -14,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/exercises" element={<ExercisePage />} />
         <Route path="/newuser" element={<NewUserForm />}/>
-        <Route path="/myfitness" element={<MyFitnessPage />}/>
+        <Route path="/myfitness" element={<UserList />}/>
         <Route path="/users/:id" element={<UserProfile />}/>
         <Route path="/users/:user_id/workouts/:workout_id" element={<WorkoutDetails />}/>
       </Routes>
