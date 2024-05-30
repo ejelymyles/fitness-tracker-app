@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 function LogCard({ log }){
 
-    const{id, exercise_id, sets, reps, weight, distance, time, exercise } = log
+    const{sets, reps, weight, distance, time, exercise } = log
     const exerciseName = exercise ? exercise.name : null;
 
     return(

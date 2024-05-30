@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ExerciseCard from "./ExerciseCard";
 
-function ExerciseList() {
-  const [exercises, setExercises] = useState([]);
-
-  useEffect(() => {
-      fetch("/exercises")
-      .then((r) =>r.json())
-      .then((exercises) => {
-        setExercises(exercises);
-      })
-    }, [])
+function ExerciseList({ exercises }) {
 
   return (
     <div>

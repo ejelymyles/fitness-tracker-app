@@ -218,17 +218,18 @@ class Exercises(Resource):
         exercises = [exercise.to_dict() for exercise in Exercise.query.all()]
         return exercises, 200
 
-    # def post(self):
-    #     new_exercise = Exercise(
-    #         name=request.form['name'],
-    #         category=request.form['category'],
-    #         muscle_group=request.form['muscle_group'],
-    #         equipment=request.form['equipment'],
-    #         description=request.form['description']
-    #     )
-    #     db.session.add(new_exercise)
-    #     db.session.commit()
-    #     return make_response(new_exercise.to_dict(), 201)
+    def post(self):
+        data = request.get_json()
+        new_exercise = Exercise(
+            name=data['name'],
+            category=data['category'],
+            muscle_group=data['muscle_group'],
+            equipment=data['equipment'],
+            description=data['description']
+        )
+        db.session.add(new_exercise)
+        db.session.commit()
+        return make_response(new_exercise.to_dict(), 201)
 
 api.add_resource(Exercises, '/exercises')
 
