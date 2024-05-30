@@ -1,10 +1,27 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
-function LogCard({ log }){
+function LogCard({ log, onDelete }){
 
-    const{sets, reps, weight, distance, time, exercise } = log
+    const{sets, reps, weight, distance, time, exercise, workout_id, id } = log
     const exerciseName = exercise ? exercise.name : null;
+    const { user_id } = useParams();
+
+    const handleDelete = () => {
+        fetch(`/users/${user_id}/workouts/${workout_id}/logs/${id}`, {
+            method: "DELETE",
+        })
+        .then((response) =>{
+            if (!response.ok) {
+                throw new Error("Network response error");
+            }
+            onDelete(id);
+        })
+        .catch((error) => {
+            console.error("There was a problem deleting the workout:", error);
+        })
+    }
 
     return(
         <div>
@@ -19,7 +36,7 @@ function LogCard({ log }){
             </li> 
             <br />
             <button>Edit</button>
-            <button>Delete</button> 
+            <button onClick={handleDelete}>Delete</button> 
             <hr />
         </div>
     )

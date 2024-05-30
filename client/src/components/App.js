@@ -24,13 +24,17 @@ function App() {
     setUsers((prevData) => [...prevData, newUser]);
   }
 
+  const deleteUser = (userId) => {
+    setUsers(users.filter((user) => user.id !== userId));
+  };
+
   return(
     <div>
       <Header />
       <Routes>
         <Route path="/exercises" element={<ExercisePage />} />
         <Route path="/newuser" element={<NewUserForm addNewUser={addNewUser}/>}/>
-        <Route path="/myfitness" element={<UserList users={users} />}/>
+        <Route path="/myfitness" element={<UserList users={users} onDelete={deleteUser} />}/>
         <Route path="/users/:id" element={<UserProfile />}/>
         <Route path="/users/:user_id/workouts/:workout_id" element={<WorkoutDetails />}/>
       </Routes>

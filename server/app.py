@@ -59,11 +59,11 @@ class UsersByID(Resource):
     #         return{"Error": "User not found"}, 404
 
 
-    # def delete(self, id):
-    #     user = User.query.filter_by(id=id).first()
-    #     db.session.delete(user)
-    #     db.session.commit()
-    #     return make_response({}, 204)
+    def delete(self, id):
+        user = User.query.filter_by(id=id).first()
+        db.session.delete(user)
+        db.session.commit()
+        return make_response({}, 204)
 
 
 api.add_resource(UsersByID, '/users/<int:id>')
@@ -113,14 +113,14 @@ class WorkoutsByID(Resource):
     #         return{"Error": "Workout not found"}, 404
 
 
-    # def delete(self, user_id, workout_id):
-    #     workout = Workout.query.filter_by(user_id=user_id, id=workout_id).first()
-    #     if not workout:
-    #         return{'workout not found'}, 404
+    def delete(self, user_id, workout_id):
+        workout = Workout.query.filter_by(user_id=user_id, id=workout_id).first()
+        if not workout:
+            return{'workout not found'}, 404
 
-    #     db.session.delete(workout)
-    #     db.session.commit()
-    #     return {'message': 'Workout deleted successfully'}, 204
+        db.session.delete(workout)
+        db.session.commit()
+        return {'message': 'Workout deleted successfully'}, 204
 
 
 api.add_resource(WorkoutsByID, '/users/<int:user_id>/workouts/<int:workout_id>')
@@ -192,18 +192,18 @@ class LogsByID(Resource):
 
 
 
-    # def delete(self, user_id, workout_id, log_id):
-    #     workout = Workout.query.filter_by(user_id=user_id, id=workout_id).first()
-    #     if not workout:
-    #         return {'message': 'Workout not found'}, 404
+    def delete(self, user_id, workout_id, log_id):
+        workout = Workout.query.filter_by(user_id=user_id, id=workout_id).first()
+        if not workout:
+            return {'message': 'Workout not found'}, 404
         
-    #     log = Log.query.filter_by(workout_id=workout.id, id=log_id).first()
-    #     if not log:
-    #         return {'message': 'Log not found'}, 404
+        log = Log.query.filter_by(workout_id=workout.id, id=log_id).first()
+        if not log:
+            return {'message': 'Log not found'}, 404
         
-    #     db.session.delete(log)
-    #     db.session.commit()
-    #     return{'message': 'Log deleted succesfully'}, 204
+        db.session.delete(log)
+        db.session.commit()
+        return{'message': 'Log deleted succesfully'}, 204
 
 
 api.add_resource(LogsByID, '/users/<int:user_id>/workouts/<int:workout_id>/logs/<int:log_id>')

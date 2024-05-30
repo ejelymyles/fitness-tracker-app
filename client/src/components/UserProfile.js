@@ -31,6 +31,10 @@ function UserProfile() {
     setWorkouts((prevData) => [...prevData, newWorkout]);
   }
 
+  const deleteWorkout = (workoutId) => {
+    setWorkouts(workouts.filter((workout) => workout.id !== workoutId));
+  };
+
 
   if (!user) {
     return <div>Loading...</div>;
@@ -51,7 +55,7 @@ function UserProfile() {
       </div>
       <hr />
       <div>
-        <WorkoutList workouts={workouts}/>
+        <WorkoutList workouts={workouts} onDelete={deleteWorkout}/>
       </div>
       <hr />
       <div>

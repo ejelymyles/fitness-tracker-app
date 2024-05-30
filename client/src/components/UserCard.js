@@ -1,9 +1,24 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function UserCard({ user }){
+function UserCard({ user, onDelete }){
 
     const{id, username, email , age, height, weight} = user
+
+    const handleDelete = () => {
+        fetch(`/users/${id}`, {
+            method: "DELETE",
+        })
+        .then((response) =>{
+            if (!response.ok) {
+                throw new Error("Network response error");
+            }
+            onDelete(id);
+        })
+        .catch((error) => {
+            console.error("There was a problem deleting the user:", error);
+        })
+    }
 
     return(
         <div>
@@ -17,7 +32,7 @@ function UserCard({ user }){
             </li>  
             <br />
             <button>Edit</button>
-            <button>Delete</button>
+            <button onClick={handleDelete}>Delete</button>
             <hr />
         </div>
     )
