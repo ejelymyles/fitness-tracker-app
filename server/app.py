@@ -46,17 +46,18 @@ class UsersByID(Resource):
         else:
             return {"Error":"Car not found"}, 404
 
-    # def patch(self, id):
-    #     user = User.query.filter_by(id=id).first()
-    #     if user:
-    #         request_data = request.get_json()
-    #         for attr, value in request_data.items():
-    #             setattr(user, attr, value)
+    def patch(self, id):
+        user = User.query.filter_by(id=id).first()
+        if user:
+            request_data = request.get_json()
+            for attr, value in request_data.items():
+                if hasattr(user, attr) and not isinstance(getattr(user, attr), list):
+                    setattr(user, attr, value)
 
-    #         db.session.commit()
-    #         return user.to_dict(), 200
-    #     else:
-    #         return{"Error": "User not found"}, 404
+            db.session.commit()
+            return user.to_dict(), 200
+        else:
+            return{"Error": "User not found"}, 404
 
 
     def delete(self, id):
