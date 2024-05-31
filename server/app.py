@@ -11,6 +11,7 @@ from config import app, db, api
 # Add your model imports
 from models import User, Exercise, Workout, Log
 from datetime import datetime
+from sqlalchemy.orm import RelationshipProperty
 
 
 
@@ -101,17 +102,28 @@ class WorkoutsByID(Resource):
             return{'Workout not found'}, 404
         return workout.to_dict(), 200
 
-    # def patch(self, user_id, workout_id):
-    #     workout = Workout.query.filter_by(user_id=user_id, id=workout_id).first()
-    #     if workout:
-    #         request_data = request.get_json()
-    #         for attr, value in request_data.items():
-    #             setattr(workout, attr, value)
+    def patch(self, user_id, workout_id):
+        workout = Workout.query.filter_by(user_id=user_id, id=workout_id).first()
+        if workout:
+            request_data = request.get_json()
+            for attr, value in request_data.items():
+                if attr == 'date' and isinstance(value, str):
+                    try:
+                        value = datetime.strptime(value, '%Y-%m-%d').date()
+                    except ValueError:
+                        return {"Error": "Invalid date format. Use YYYY-MM-DD."}, 400
+
+                if hasattr(workout, attr):
+                    column_property = getattr(Workout, attr)
+                    if isinstance(column_property.property, RelationshipProperty):
+                        continue
+
+                setattr(workout, attr, value)
         
-    #         db.session.commit()
-    #         return workout.to_dict(), 200
-    #     else:
-    #         return{"Error": "Workout not found"}, 404
+            db.session.commit()
+            return workout.to_dict(), 200
+        else:
+            return{"Error": "Workout not found"}, 404
 
 
     def delete(self, user_id, workout_id):
@@ -246,17 +258,17 @@ class ExercisesByID(Resource):
         else:
             return {"Error":"Car not found"}, 404
 
-    # def patch(self, id):
-    #     exercise = Exercise.query.filter_by(id=id).first()
-    #     if exercise:
-    #         request_data = request.get_json()
-    #         for attr, value in request_data.items():
-    #             setattr(exercise, attr, value)
+    def patch(self, id):
+        exercise = Exercise.query.filter_by(id=id).first()
+        if exercise:
+            request_data = request.get_json()
+            for attr, value in request_data.items():
+                setattr(exercise, attr, value)
 
-    #         db.session.commit()
-    #         return exercise.to_dict(), 200
-    #     else:
-    #         return{"Error": "Exercise not found"}, 404
+            db.session.commit()
+            return exercise.to_dict(), 200
+        else:
+            return{"Error": "Exercise not found"}, 404
 
     def delete(self, id):
         exercise = Exercise.query.filter_by(id=id).first()
