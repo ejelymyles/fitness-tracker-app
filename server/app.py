@@ -141,12 +141,6 @@ api.add_resource(WorkoutsByID, '/users/<int:user_id>/workouts/<int:workout_id>')
 
 
 
-
-
-
-
-
-
 class Logs(Resource):
     def get(self, user_id, workout_id):
         workout = Workout.query.filter_by(user_id=user_id, id=workout_id).first()
@@ -186,22 +180,31 @@ class LogsByID(Resource):
         return log.to_dict(), 200
         
 
-    # def patch(self, user_id, workout_id, log_id):
-    #     workout = Workout.query.filter_by(user_id=user_id, id=workout_id).first()
-    #     if not workout:
-    #         return {'message': 'Workout not found'}, 404
+    def patch(self, user_id, workout_id, log_id):
+        workout = Workout.query.filter_by(user_id=user_id, id=workout_id).first()
+        if not workout:
+            return {'message': 'Workout not found'}, 404
 
-    #     log = Log.query.filter_by(workout_id=workout.id, id=log_id).first()
-    #     if log:
-    #         request_data = request.get_json()
-    #         for attr, value in request_data.items():
-    #             if hasattr(log, attr):
-    #                 setattr(log, attr, value)
+        log = Log.query.filter_by(workout_id=workout.id, id=log_id).first()
+        if log:
+            request_data = request.get_json()
+            for attr, value in request_data.items():
+                if hasattr(log, attr):
+                    current_value = getattr(log, attr)
+                    if isinstance(current_value, db.Model) and isinstance(value, dict):
+                        related_class = type(current_value)
+                        related_instance = related_class.query.get(value.get('id'))
+                        if related_instance:
+                            setattr(log, attr, related_instance)
+                        else:
+                            return {"Error": f"Related {related_class.__name__} not found"}
+                    else:
+                        setattr(log, attr, value)
 
-    #         db.session.commit()
-    #         return log.to_dict(), 200
-    #     else:
-    #         return{"Error": "Log not found"}, 404
+            db.session.commit()
+            return log.to_dict(), 200
+        else:
+            return{"Error": "Log not found"}, 404
 
 
 
