@@ -35,6 +35,10 @@ function UserProfile() {
     setWorkouts(workouts.filter((workout) => workout.id !== workoutId));
   };
 
+  const updateWorkout = (updatedWorkout) => {
+    setWorkouts((prevWorkout) => prevWorkout.map((workout) => (workout.id === updatedWorkout.id ? updatedWorkout : workout)));
+  };
+
 
   if (!user) {
     return <div>Loading...</div>;
@@ -55,7 +59,7 @@ function UserProfile() {
       </div>
       <hr />
       <div>
-        <WorkoutList workouts={workouts} onDelete={deleteWorkout}/>
+        <WorkoutList workouts={workouts} onDelete={deleteWorkout} onUpdate={updateWorkout}/>
       </div>
       <hr />
       <div>

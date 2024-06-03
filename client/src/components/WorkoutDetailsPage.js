@@ -35,6 +35,12 @@ function WorkoutDetails() {
     setLogs(logs.filter((log) => log.id !== logId));
   };
 
+  const updateLog = (updatedLog) => {
+    setLogs((prevLogs) => prevLogs.map((log) => (log.id === updatedLog.id ? updatedLog : log)));
+  };
+
+
+
 
   if (!workout) {
     return <div>Loading...</div>;
@@ -53,7 +59,7 @@ function WorkoutDetails() {
       </div>
       <hr />
       <div>
-        <LogList logs={logs} onDelete={deleteLog}/>
+        <LogList logs={logs} onDelete={deleteLog} onUpdate={updateLog}/>
       </div>
       <hr />
       <div>

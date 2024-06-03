@@ -6,8 +6,8 @@ function NavBar(){
         <div>
             <NavLink exact to ="/" className="nav-link">Home</NavLink>
             <NavLink to="/exercises" className="nav-link">Exercise Hub</NavLink>
-            <NavLink to="/newuser" className="nav-link">Add New Workout Partners</NavLink>
-            <NavLink to="/myfitness" className="nav-link">My Fitness Hub</NavLink>
+            <NavLink to="/newuser" className="nav-link">New Workout Partners</NavLink>
+            <NavLink to="/myfitness" className="nav-link">Fitness Hub</NavLink>
             <NavLink to="/gyms" className="nav-link">Gym Locator</NavLink>
         </div>
     )

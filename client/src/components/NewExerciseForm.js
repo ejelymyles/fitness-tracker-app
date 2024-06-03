@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 
-function NewExerciseForm({ addNewExercise}){
+function NewExerciseForm({ addNewExercise, onSubmit, onCancel, initialValues, isEdit}){
 
     const formik = useFormik({
         initialValues: {
@@ -21,8 +21,11 @@ function NewExerciseForm({ addNewExercise}){
             description: Yup.string()
         }),
         onSubmit: (values, {setSubmitting, resetForm, setErrors}) => {
-            fetch("/exercises", {
-                method: "POST",
+            const url = isEdit ? `/exercises/${initialValues.id}` : "/exercises";
+            const method = isEdit ? "PATCH" : "POST";
+
+            fetch(url, {
+                method: method,
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -35,9 +38,13 @@ function NewExerciseForm({ addNewExercise}){
                     return r.json().then((err) => Promise.reject(err));
                 }
             })
-            .then((newExercise) => {
-                addNewExercise(newExercise);
-                resetForm();
+            .then((exercise) => {
+                if(!isEdit) {
+                    addNewExercise(exercise);
+                    resetForm();
+                } else {
+                    onSubmit(exercise)
+                }
             })
             .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))
             .finally(() => setSubmitting(false));
@@ -76,7 +83,8 @@ function NewExerciseForm({ addNewExercise}){
                 <input id="description" name="description" type="text" onChange={formik.handleChange} value={formik.values.description} />
                 <p style={{ color: 'red'}}>{formik.errors.description}</p>
                 <br />
-                <button type="submit">Post</button>
+                <button type="submit">{isEdit ? "Update" : "Post"}</button>
+                {isEdit && <button type="button" onClick={onCancel}>Cancel</button>}
             </form>
         </div>
     )

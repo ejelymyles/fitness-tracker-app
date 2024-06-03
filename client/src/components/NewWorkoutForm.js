@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { useParams } from "react-router-dom";
 
 
-function NewWorkoutForm({ addNewWorkout }){
+function NewWorkoutForm({ addNewWorkout, onSubmit, onCancel, initialValues, isEdit }){
 
     const { id } = useParams(); //access the id from the url to make the fetch 
 
@@ -19,8 +19,11 @@ function NewWorkoutForm({ addNewWorkout }){
 
         }),
         onSubmit: (values, {setSubmitting, resetForm, setErrors}) => {
-            fetch(`/users/${id}/workouts`, {
-                method: "POST",
+            const url = isEdit ? `/users/${initialValues.user_id}/workouts/${initialValues.id}` : `/users/${id}/workouts`;
+            const method = isEdit ? "PATCH" : "POST";
+
+            fetch(url, {
+                method: method,
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -33,9 +36,13 @@ function NewWorkoutForm({ addNewWorkout }){
                     return r.json().then((err) => Promise.reject(err));
                 }
             })
-            .then((newWorkout) => {
-                addNewWorkout(newWorkout);
-                resetForm();
+            .then((workout) => {
+                if(!isEdit) {
+                    addNewWorkout(workout);
+                    resetForm();
+                } else {
+                    onSubmit(workout);
+                }
             })
             .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))
             .finally(() => setSubmitting(false));
@@ -45,7 +52,7 @@ function NewWorkoutForm({ addNewWorkout }){
 
     return(
         <div className='form'>
-            <h3 className="full-list-header">Add New Workout Session</h3>
+            <h2 className="full-list-header">{isEdit ? "Edit Workout" : "Add Workout Session"}</h2>
             <form onSubmit={formik.handleSubmit} >
                 <label htmlFor='date'>Date</label>
                 <br />
@@ -58,7 +65,8 @@ function NewWorkoutForm({ addNewWorkout }){
                 <input id="duration" name='duration' type="text" onChange={formik.handleChange} value={formik.values.duration}/>
                 <p style={{ color: 'red'}}>{formik.errors.duration}</p>
                 <br />
-                <button type="submit">Add Session</button>
+                <button type="submit">{isEdit ? "Update" : "Add Session"}</button>
+                {isEdit && <button type="button" onClick={onCancel}>Cancel</button>}
             </form>
         </div>
     )

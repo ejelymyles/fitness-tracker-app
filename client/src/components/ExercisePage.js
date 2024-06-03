@@ -22,6 +22,10 @@ function ExercisePage(){
         setExercises(exercises.filter((exercise) => exercise.id !== exerciseId));
       };
 
+    const updateExercise = (updatedExercise) => {
+        setExercises((prevExercises) => prevExercises.map((exercise) => (exercise.id === updatedExercise.id ? updatedExercise : exercise)));
+      };
+
 
 
     return(
@@ -29,7 +33,7 @@ function ExercisePage(){
             <h2>Post A New Exercise To The Community</h2>
             <NewExerciseForm addNewExercise={addNewExercise}/>
             <hr />
-            <ExerciseList exercises={exercises} onDelete={deleteExercise}/>
+            <ExerciseList exercises={exercises} onDelete={deleteExercise} onUpdate={updateExercise}/>
         </div>
     )
 }

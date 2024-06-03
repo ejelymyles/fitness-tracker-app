@@ -6,6 +6,7 @@ import NewUserForm from "./NewUserForm.js";
 import UserProfile from "./UserProfile";
 import WorkoutDetails from "./WorkoutDetailsPage";
 import UserList from "./UserList";
+import Homepage from "./Homepage";
 
 function App() {
 
@@ -27,13 +28,18 @@ function App() {
     setUsers(users.filter((user) => user.id !== userId));
   };
 
+  const updateUser = (updatedUser) => {
+    setUsers((prevUsers) => prevUsers.map((user) => (user.id === updatedUser.id ? updatedUser : user)));
+  };
+
   return(
     <div>
       <Header />
       <Routes>
+        <Route exact path="/" element={<Homepage />} />
         <Route path="/exercises" element={<ExercisePage />} />
         <Route path="/newuser" element={<NewUserForm addNewUser={addNewUser}/>}/>
-        <Route path="/myfitness" element={<UserList users={users} onDelete={deleteUser} />}/>
+        <Route path="/myfitness" element={<UserList users={users} onDelete={deleteUser} onUpdate={updateUser}/>}/>
         <Route path="/users/:id" element={<UserProfile />}/>
         <Route path="/users/:user_id/workouts/:workout_id" element={<WorkoutDetails />}/>
       </Routes>

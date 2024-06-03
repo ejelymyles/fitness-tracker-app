@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 
-function NewUserForm({addNewUser}){
+function NewUserForm({addNewUser, onSubmit, onCancel, initialValues, isEdit}){
 
     const formik = useFormik({
         initialValues: {
@@ -21,8 +21,11 @@ function NewUserForm({addNewUser}){
             weight: Yup.number().required("Weight is required").positive("Weight must be a positive number").integer("Weight must be an integer"),
         }),
         onSubmit: (values, {setSubmitting, resetForm, setErrors}) => {
-            fetch("/users", {
-                method: "POST",
+            const url = isEdit ? `/users/${initialValues.id}` : "/users";
+            const method = isEdit ? "PATCH" : "POST";
+
+            fetch(url, {
+                method: method,
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -35,9 +38,13 @@ function NewUserForm({addNewUser}){
                     return r.json().then((err) => Promise.reject(err));
                 }
             })
-            .then((newUser) => {
-                addNewUser(newUser);
-                resetForm();
+            .then((user) => {
+                if(!isEdit) {
+                    addNewUser(user);
+                    resetForm();
+                } else {
+                    onSubmit(user);
+                }
             })
             .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))
             .finally(() => setSubmitting(false));
@@ -49,7 +56,7 @@ function NewUserForm({addNewUser}){
 
     return(
         <div className='form'>
-            <h1 className="full-list-header">Add New Workout Partners</h1>
+            <h2 className="full-list-header">{isEdit ? "Edit User" : "Submit Workout Partner"}</h2>
             <form onSubmit={formik.handleSubmit} >
                 <label htmlFor='username'>Username</label>
                 <br />
@@ -81,7 +88,8 @@ function NewUserForm({addNewUser}){
                 <input id="weight" name="weight" type="text" onChange={formik.handleChange} value={formik.values.weight}/>
                 <p style={{ color: 'red'}}>{formik.errors.weight}</p>
                 <br />
-                <button type="submit">Submit</button>
+                <button type="submit">{isEdit ? "Update" : "Submit"}</button>
+                {isEdit && <button type="button" onClick={onCancel}>Cancel</button>}
             </form>
         </div>
     )
