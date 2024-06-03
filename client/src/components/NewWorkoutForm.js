@@ -52,7 +52,7 @@ function NewWorkoutForm({ addNewWorkout, onSubmit, onCancel, initialValues, isEd
 
     return(
         <div className='form'>
-            <h2 className="full-list-header">{isEdit ? "Edit Workout" : "Add Workout Session"}</h2>
+            <h2 className="list-header">{isEdit ? "Edit Workout" : "Add Workout Session"}</h2>
             <form onSubmit={formik.handleSubmit} >
                 <label htmlFor='date'>Date</label>
                 <br />
@@ -66,7 +66,7 @@ function NewWorkoutForm({ addNewWorkout, onSubmit, onCancel, initialValues, isEd
                 <p style={{ color: 'red'}}>{formik.errors.duration}</p>
                 <br />
                 <button type="submit">{isEdit ? "Update" : "Add Session"}</button>
-                {isEdit && <button type="button" onClick={onCancel}>Cancel</button>}
+                {isEdit && <button type="cancel" onClick={onCancel}>Cancel</button>}
             </form>
         </div>
     )

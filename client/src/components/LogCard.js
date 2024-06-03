@@ -53,8 +53,8 @@ function LogCard({ log, onDelete, onUpdate}){
     };
 
     return(
-        <div>
-            <li className="card">
+        <div className="card">
+            <li >
                 {editMode ? (
                     <NewLogForm initialValues={{id, sets, reps, weight, distance, time, workout_id}} onSubmit={handleEditLog} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
@@ -72,11 +72,11 @@ function LogCard({ log, onDelete, onUpdate}){
             <br />
             {!editMode && (
                 <div>
-                    <button onClick={toggleEditMode}>Edit</button>
-                    <button onClick={handleDelete}>Delete</button> 
+                    <button type="edit" onClick={toggleEditMode}>Edit</button>
+                    <button type="delete" onClick={handleDelete}>Delete</button> 
                 </div>
             )}
-            <hr />
+            <hr className="breakline"/>
         </div>
     )
 }

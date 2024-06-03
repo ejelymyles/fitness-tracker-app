@@ -5,7 +5,7 @@ function Homepage() {
 
 
     return (
-        <div>
+        <div className="homepage">
             <h2> Use this app to discover new workouts </h2>
             <h2> If you're new here, you can create a user profile at the "New Workout Partners" tab. </h2>
             <h2> Once you've created a profile, you can find your fusion card in the Fitness Hub. Here you can log your workouts, keep track of your progress, and stay on top of your goals!  </h2>

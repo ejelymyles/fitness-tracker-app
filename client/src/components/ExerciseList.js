@@ -5,7 +5,7 @@ function ExerciseList({ exercises, onDelete, onUpdate }) {
 
   return (
     <div>
-        <h2 className="full-list-header">Search For Exercises</h2>
+        <h2 className="list-header">Search For Exercises</h2>
         <ul className="exercise card-container">{exercises.map((exercise) => <ExerciseCard key={exercise.id} exercise={exercise} onDelete={onDelete} onUpdate={onUpdate}/>)}</ul>
     </div>
   );

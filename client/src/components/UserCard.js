@@ -50,8 +50,8 @@ function UserCard({ user, onDelete, onUpdate }){
     };
 
     return(
-        <div>
-            <li className="card">
+        <div className="card">
+            <li>
                 {editMode ? (
                     <NewUserForm initialValues={{ id, username, email, age, height, weight}} onSubmit={handleEditUser} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
@@ -59,20 +59,19 @@ function UserCard({ user, onDelete, onUpdate }){
                         <h3>{username}</h3>
                         <p>email: {email}</p>
                         <p>age: {age}</p>
-                        <p>height: {height}</p>
-                        <p>weight: {weight}</p> 
+                        <p>height: {height}''</p>
+                        <p>weight: {weight} lbs</p> 
                         <NavLink to={`/users/${id}`} className="cardnav-link">View User Profile</NavLink> 
                     </div>
                 )}
             </li>  
-            <br />
+            {/* <br /> */}
             {!editMode && (
                 <div>
-                    <button onClick={toggleEditMode}>Edit</button>
-                    <button onClick={handleDelete}>Delete</button>
+                    <button type="edit" onClick={toggleEditMode}>Edit</button>
+                    <button type="delete" onClick={handleDelete}>Delete</button>
                 </div>
             )}
-            <hr />
         </div>
     )
 }

@@ -56,7 +56,7 @@ function NewUserForm({addNewUser, onSubmit, onCancel, initialValues, isEdit}){
 
     return(
         <div className='form'>
-            <h2 className="full-list-header">{isEdit ? "Edit User" : "Submit Workout Partner"}</h2>
+            <h2 className="list-header">{isEdit ? "Edit User" : "Submit Workout Partner"}</h2>
             <form onSubmit={formik.handleSubmit} >
                 <label htmlFor='username'>Username</label>
                 <br />
@@ -89,7 +89,7 @@ function NewUserForm({addNewUser, onSubmit, onCancel, initialValues, isEdit}){
                 <p style={{ color: 'red'}}>{formik.errors.weight}</p>
                 <br />
                 <button type="submit">{isEdit ? "Update" : "Submit"}</button>
-                {isEdit && <button type="button" onClick={onCancel}>Cancel</button>}
+                {isEdit && <button type="cancel" onClick={onCancel}>Cancel</button>}
             </form>
         </div>
     )

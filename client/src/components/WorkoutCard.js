@@ -52,8 +52,8 @@ function WorkoutCard({ workout, onDelete, onUpdate }){
 
 
     return(
-        <div>
-            <li className="card">
+        <div className="card">
+            <li >
                 {editMode ? (
                     <NewWorkoutForm initialValues={{id, user_id, date, duration}} onSubmit={handleEditWorkout} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
@@ -68,8 +68,8 @@ function WorkoutCard({ workout, onDelete, onUpdate }){
             <br />
             {!editMode && (
                 <div>
-                    <button onClick={toggleEditMode}>Edit</button>
-                    <button onClick={handleDelete}>Delete</button>
+                    <button type="edit" onClick={toggleEditMode}>Edit</button>
+                    <button type="delete" onClick={handleDelete}>Delete</button>
                 </div>
             )}
         </div>

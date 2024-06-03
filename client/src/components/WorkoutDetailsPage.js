@@ -53,15 +53,15 @@ function WorkoutDetails() {
   return (
     <div>
       <div className="details-page">
-        <h2 className="full-list-header">Workout Details</h2>
+        <h2 className="list-header">Workout Details</h2>
         <p>Date: {date}</p>
         <p>Duration {duration} minutes</p>
       </div>
-      <hr />
+      <hr className="breakline"/>
       <div>
         <LogList logs={logs} onDelete={deleteLog} onUpdate={updateLog}/>
       </div>
-      <hr />
+      <hr className="breakline"/>
       <div>
         <NewLogForm addNewLog={addNewLog}/>
       </div>

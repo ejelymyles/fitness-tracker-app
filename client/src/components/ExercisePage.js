@@ -30,9 +30,9 @@ function ExercisePage(){
 
     return(
         <div>
-            <h2>Post A New Exercise To The Community</h2>
+            <h2 className="list-header">Post A New Exercise To The Community</h2>
             <NewExerciseForm addNewExercise={addNewExercise}/>
-            <hr />
+            <hr className="breakline"/>
             <ExerciseList exercises={exercises} onDelete={deleteExercise} onUpdate={updateExercise}/>
         </div>
     )

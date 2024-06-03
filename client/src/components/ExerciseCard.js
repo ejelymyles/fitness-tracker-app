@@ -50,26 +50,26 @@ function ExerciseCard({ exercise, onDelete, onUpdate }){
 
 
     return(
-        <div>
-            <li className="card">
+        <div className="card">
+            <li >
                 {editMode ? (
                     <NewExerciseForm initialValues={{id , name, category, muscle_group, equipment, description}} onSubmit={handleEditExercise} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
                     <div>
                         <h3>{name}</h3>
-                        <p>category: {category}</p>
-                        <p>muscle_group: {muscle_group}</p>
-                        <p>equipment needed: {equipment}</p>
-                        <p>description: {description}</p> 
-                        <p>exercise reference: {id}</p>
+                        <p>Category: {category}</p>
+                        <p>Muscle Group: {muscle_group}</p>
+                        <p>Equipment Needed: {equipment}</p>
+                        <p>Description: {description}</p> 
+                        <p>Exercise Reference # {id}</p>
                     </div>
                 )}
             </li>  
-            <br />
+            <br className="breakline"/>
             {!editMode && (
                 <div>
-                    <button onClick={toggleEditMode}>Edit</button>
-                    <button onClick={handleDelete}>Delete</button>
+                    <button type="edit" onClick={toggleEditMode}>Edit</button>
+                    <button type="delete" onClick={handleDelete}>Delete</button>
                 </div>
             )}
         </div>

@@ -50,18 +50,18 @@ function UserProfile() {
   return (
     <div>
       <div className="details-page">
-        <h2 className="full-list-header">User Profile</h2>
+        <h2 className="list-header">User Profile</h2>
         <p>Username: {username}</p>
         <p>Email: {email}</p>
         <p>Age: {age}</p>
         <p>Height: {height}''</p>
         <p>Height: {weight} lbs</p>
       </div>
-      <hr />
+      <hr className="breakline"/>
       <div>
         <WorkoutList workouts={workouts} onDelete={deleteWorkout} onUpdate={updateWorkout}/>
       </div>
-      <hr />
+      <hr className="breakline" />
       <div>
         <NewWorkoutForm addNewWorkout={addNewWorkout} />
       </div>

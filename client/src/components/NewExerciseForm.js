@@ -84,7 +84,7 @@ function NewExerciseForm({ addNewExercise, onSubmit, onCancel, initialValues, is
                 <p style={{ color: 'red'}}>{formik.errors.description}</p>
                 <br />
                 <button type="submit">{isEdit ? "Update" : "Post"}</button>
-                {isEdit && <button type="button" onClick={onCancel}>Cancel</button>}
+                {isEdit && <button type="cancel" onClick={onCancel}>Cancel</button>}
             </form>
         </div>
     )

@@ -59,7 +59,7 @@ function NewLogForm({ addNewLog, onSubmit, onCancel, initialValues, isEdit }){
 
     return(
         <div className='form'>
-            <h2 className="full-list-header">{isEdit ? "Edit Log" : "Log Exercise"}</h2> 
+            <h2 className="list-header">{isEdit ? "Edit Log" : "Log Exercise"}</h2> 
             <form onSubmit={formik.handleSubmit}>
                 <label htmlFor='exercise_id'>Exercise Reference Number</label>
                 <br />
@@ -99,7 +99,7 @@ function NewLogForm({ addNewLog, onSubmit, onCancel, initialValues, isEdit }){
                 <p style={{ color: 'red'}}>{formik.errors.time}</p>
                 <br />
                 <button type="submit">{isEdit ? "Update" : "Log"}</button>
-                {isEdit && <button type="button" onClick={onCancel}>Cancel</button>}
+                {isEdit && <button type="cancel" onClick={onCancel}>Cancel</button>}
             </form>
         </div>
     )
