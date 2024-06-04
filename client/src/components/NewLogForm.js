@@ -59,7 +59,7 @@ function NewLogForm({ addNewLog, onSubmit, onCancel, initialValues, isEdit }){
 
     return(
         <div className='form'>
-            <h2 className="list-header">{isEdit ? "Edit Log" : "Log Exercise"}</h2> 
+            <h2 className="list-header">{isEdit ? "Edit Log" : "Log New Exercise"}</h2> 
             <form onSubmit={formik.handleSubmit}>
                 <label htmlFor='exercise_id'>Exercise Reference Number</label>
                 <br />

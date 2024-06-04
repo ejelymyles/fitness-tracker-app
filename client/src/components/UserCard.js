@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import NewUserForm from "./NewUserForm";
+import { MyContext } from "./MyContext";
 
-function UserCard({ user, onDelete, onUpdate }){
+function UserCard({ user }){
+
+    const {deleteUser, updateUser} = useContext(MyContext);
 
     const{id, username, email , age, height, weight} = user;
     const [editMode, setEditMode] = useState(false);
@@ -19,7 +22,7 @@ function UserCard({ user, onDelete, onUpdate }){
             if (!response.ok) {
                 throw new Error("Network response error");
             }
-            onDelete(id);
+            deleteUser(id);
         })
         .catch((error) => {
             console.error("There was a problem deleting the user:", error);
@@ -41,7 +44,7 @@ function UserCard({ user, onDelete, onUpdate }){
             return response.json();
         })
         .then((updatedUser) => {
-            onUpdate(updatedUser);
+            updateUser(updatedUser);
             toggleEditMode();
         })
         .catch((error) => {

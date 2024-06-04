@@ -52,7 +52,7 @@ function WorkoutDetails() {
 
   return (
     <div>
-      <div className="details-page">
+      <div className="workout details-page">
         <h2 className="list-header">Workout Details</h2>
         <p>Date: {date}</p>
         <p>Duration {duration} minutes</p>

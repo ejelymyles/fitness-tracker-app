@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { MyContext } from "./MyContext";
 
 
-function NewUserForm({addNewUser, onSubmit, onCancel, initialValues, isEdit}){
+function NewUserForm({onSubmit, onCancel, initialValues, isEdit}){
+
+    const{ addNewUser } = useContext(MyContext);
 
     const formik = useFormik({
         initialValues: {
