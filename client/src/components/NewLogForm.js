@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useParams } from "react-router-dom";
+import { MyContext } from "./MyContext";
 
 
 function NewLogForm({ addNewLog, onSubmit, onCancel, initialValues, isEdit }){
@@ -46,10 +47,10 @@ function NewLogForm({ addNewLog, onSubmit, onCancel, initialValues, isEdit }){
             })
             .then((log) => {
                 if(!isEdit) {
-                    addNewLog(log);
+                    addNewLog(log); //UPDATE STATE
                     resetForm();
                 } else {
-                    onSubmit(log)
+                    onSubmit(log) //MAKE PATCH (handleEditLog)
                 }
             })
             .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))

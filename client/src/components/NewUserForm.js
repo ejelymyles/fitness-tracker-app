@@ -43,10 +43,10 @@ function NewUserForm({onSubmit, onCancel, initialValues, isEdit}){
             })
             .then((user) => {
                 if(!isEdit) {
-                    addNewUser(user);
+                    addNewUser(user); //UPDATE STATE
                     resetForm();
                 } else {
-                    onSubmit(user);
+                    onSubmit(user); //MAKE PATCH (handleEditUser)
                 }
             })
             .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))

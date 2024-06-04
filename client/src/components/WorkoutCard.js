@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import NewWorkoutForm from "./NewWorkoutForm";
+import { MyContext } from "./MyContext";
 
 function WorkoutCard({ workout, onDelete, onUpdate }){
+
+    // const {updateWorkout, deleteWorkout} = useContext(MyContext);
 
     const{id, user_id, date, duration } = workout
     const [editMode, setEditMode]= useState(false);
@@ -11,6 +14,7 @@ function WorkoutCard({ workout, onDelete, onUpdate }){
         setEditMode(!editMode)
     }
 
+    // DELETE SPECIFIC WORKOUT
     const handleDelete = () => {
         fetch(`/users/${user_id}/workouts/${id}`, {
             method: "DELETE",
@@ -19,13 +23,14 @@ function WorkoutCard({ workout, onDelete, onUpdate }){
             if (!response.ok) {
                 throw new Error("Network response error");
             }
-            onDelete(id);
+            onDelete(id); //UPDATE STATE
         })
         .catch((error) => {
             console.error("There was a problem deleting the workout:", error);
         })
     }
 
+    // EDIT SPECIFIC WORKOUT 
     const handleEditWorkout = (values) => {
         fetch(`/users/${user_id}/workouts/${id}`, {
             method: "PATCH",
@@ -41,7 +46,7 @@ function WorkoutCard({ workout, onDelete, onUpdate }){
             return response.json();
         })
         .then((updatedWorkout) => {
-            onUpdate(updatedWorkout);
+            onUpdate(updatedWorkout); // UPDATE STATE
             toggleEditMode();
         })
         .catch((error) => {
@@ -75,5 +80,7 @@ function WorkoutCard({ workout, onDelete, onUpdate }){
         </div>
     )
 }
+
+// pass onSubmit={handleEditWorkout} to form 
 
 export default WorkoutCard;

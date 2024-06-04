@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import NewExerciseForm from "./NewExerciseForm";
+import { MyContext } from "./MyContext";
 
-function ExerciseCard({ exercise, onDelete, onUpdate }){
+function ExerciseCard({ exercise }){
 
+    const {updateExercise, deleteExercise} = useContext(MyContext);
     const{id, name, category, muscle_group, equipment, description} = exercise
     const [editMode, setEditMode]= useState(false);
 
@@ -10,6 +12,7 @@ function ExerciseCard({ exercise, onDelete, onUpdate }){
         setEditMode(!editMode)
     }
 
+    // DELETE REQUEST TO SPECIFIC EXERCISE
     const handleDelete = () => {
         fetch(`/exercises/${id}`, {
             method: "DELETE",
@@ -18,13 +21,14 @@ function ExerciseCard({ exercise, onDelete, onUpdate }){
             if (!response.ok) {
                 throw new Error("Network response error");
             }
-            onDelete(id);
+            deleteExercise(id); // UPDATE STATE
         })
         .catch((error) => {
             console.error("There was a problem deleting the user:", error);
         })
     }
 
+    // EDIT SPECIFIC EXERCISE
     const handleEditExercise = (values) => {
         fetch(`/exercises/${id}`, {
             method: "PATCH",
@@ -40,7 +44,7 @@ function ExerciseCard({ exercise, onDelete, onUpdate }){
             return response.json();
         })
         .then((updatedExercise) => {
-            onUpdate(updatedExercise);
+            updateExercise(updatedExercise); //UPDATE STATE 
             toggleEditMode();
         })
         .catch((error) => {
@@ -75,5 +79,6 @@ function ExerciseCard({ exercise, onDelete, onUpdate }){
         </div>
     )
 }
+
 
 export default ExerciseCard;

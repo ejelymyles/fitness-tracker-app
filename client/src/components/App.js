@@ -7,6 +7,7 @@ import UserProfile from "./UserProfile";
 import WorkoutDetails from "./WorkoutDetailsPage";
 import UserList from "./UserList";
 import Homepage from "./Homepage";
+import MapComponent from "./MyMaps";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/newuser" element={<NewUserForm />}/> 
         <Route path="/myfitness" element={<UserList />}/>
         <Route path="/users/:id" element={<UserProfile />}/>
+        <Route path="/gyms" element={<MapComponent />}/>
         <Route path="/users/:user_id/workouts/:workout_id" element={<WorkoutDetails />}/>
       </Routes>
     </div>

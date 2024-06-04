@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import NewLogForm from "./NewLogForm";
+import { MyContext } from "./MyContext";
 
 function LogCard({ log, onDelete, onUpdate}){
 
@@ -14,6 +15,7 @@ function LogCard({ log, onDelete, onUpdate}){
         setEditMode(!editMode)
     }
 
+    // DELETE SPECIFIC LOG
     const handleDelete = () => {
         fetch(`/users/${user_id}/workouts/${workout_id}/logs/${id}`, {
             method: "DELETE",
@@ -22,13 +24,15 @@ function LogCard({ log, onDelete, onUpdate}){
             if (!response.ok) {
                 throw new Error("Network response error");
             }
-            onDelete(id);
+            onDelete(id); // UPDATE STATE
         })
         .catch((error) => {
             console.error("There was a problem deleting the workout:", error);
         })
     }
 
+    
+    // EDIT SPECIFIC LOG
     const handleEditLog = (values) => {
         fetch(`/users/${user_id}/workouts/${workout_id}/logs/${id}`, {
             method: "PATCH",
@@ -44,7 +48,7 @@ function LogCard({ log, onDelete, onUpdate}){
             return response.json();
         })
         .then((updatedLog) => {
-            onUpdate(updatedLog);
+            onUpdate(updatedLog); //UPDATE STATE
             toggleEditMode();
         })
         .catch((error) => {

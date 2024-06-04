@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useParams } from "react-router-dom";
-
+import { MyContext } from "./MyContext";
 
 function NewWorkoutForm({ addNewWorkout, onSubmit, onCancel, initialValues, isEdit }){
 
-    const { id } = useParams(); //access the id from the url to make the fetch 
+    // const { handleEditWorkout, addNewWorkout} = useContext(MyContext);
+
+    const { id } = useParams();
 
     const formik = useFormik({
         initialValues: {
@@ -38,10 +40,10 @@ function NewWorkoutForm({ addNewWorkout, onSubmit, onCancel, initialValues, isEd
             })
             .then((workout) => {
                 if(!isEdit) {
-                    addNewWorkout(workout);
+                    addNewWorkout(workout); //UPDATE STATE
                     resetForm();
                 } else {
-                    onSubmit(workout);
+                    onSubmit(workout); //MAKE PATCH (handleEditWorkout)
                 }
             })
             .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))

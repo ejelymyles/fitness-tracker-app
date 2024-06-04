@@ -4,7 +4,7 @@ import { MyContext } from "./MyContext";
 
 function UserList() {
 
-    const { users, deleteUser, updateUser} = useContext(MyContext);
+    const { users } = useContext(MyContext);
 
   return (
     <div>

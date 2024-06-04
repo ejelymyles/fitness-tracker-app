@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LogCard from "./LogCard";
+import { MyContext } from "./MyContext";
 
 function LogList({ logs, onDelete, onUpdate }) {
 

@@ -6,14 +6,15 @@ import { MyContext } from "./MyContext";
 function UserCard({ user }){
 
     const {deleteUser, updateUser} = useContext(MyContext);
+    const [editMode, setEditMode] = useState(false);
 
     const{id, username, email , age, height, weight} = user;
-    const [editMode, setEditMode] = useState(false);
 
     const toggleEditMode = () => {
         setEditMode(!editMode)
     }
 
+    // DELETE SPECIFIC USER
     const handleDelete = () => {
         fetch(`/users/${id}`, {
             method: "DELETE",
@@ -22,13 +23,14 @@ function UserCard({ user }){
             if (!response.ok) {
                 throw new Error("Network response error");
             }
-            deleteUser(id);
+            deleteUser(id); //UPDATE STATE
         })
         .catch((error) => {
             console.error("There was a problem deleting the user:", error);
         })
     }
 
+        //EDIT SPEFICIC USER
     const handleEditUser = (values) => {
         fetch(`/users/${id}`, {
             method: "PATCH",
@@ -44,7 +46,7 @@ function UserCard({ user }){
             return response.json();
         })
         .then((updatedUser) => {
-            updateUser(updatedUser);
+            updateUser(updatedUser); //UPDATE STATE
             toggleEditMode();
         })
         .catch((error) => {
@@ -68,7 +70,7 @@ function UserCard({ user }){
                     </div>
                 )}
             </li>  
-            {/* <br /> */}
+            <br />
             {!editMode && (
                 <div>
                     <button type="edit" onClick={toggleEditMode}>Edit</button>

@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { MyContext } from "./MyContext";
 
 
-function NewExerciseForm({ addNewExercise, onSubmit, onCancel, initialValues, isEdit}){
+function NewExerciseForm({ onSubmit, onCancel, initialValues, isEdit}){
+
+    const { addNewExercise } = useContext(MyContext);
 
     const formik = useFormik({
         initialValues: {
@@ -40,10 +43,10 @@ function NewExerciseForm({ addNewExercise, onSubmit, onCancel, initialValues, is
             })
             .then((exercise) => {
                 if(!isEdit) {
-                    addNewExercise(exercise);
+                    addNewExercise(exercise); //UPDATE STATE
                     resetForm();
                 } else {
-                    onSubmit(exercise)
+                    onSubmit(exercise) //MAKE PATCH REQUEST (handleEditExercise)
                 }
             })
             .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))

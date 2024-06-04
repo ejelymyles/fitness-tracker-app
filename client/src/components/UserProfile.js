@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import WorkoutList from "./WorkoutList";
 import NewWorkoutForm from "./NewWorkoutForm";
+import { MyContext } from "./MyContext";
 
 function UserProfile() {
   const [user, setUser] = useState(null);
@@ -26,15 +27,17 @@ function UserProfile() {
     })
   }, [id]);
 
-  // build function to update state and pass it to the workout form
+  // UPDATE STATE TO ADD NEW WORKOUT
   function addNewWorkout(newWorkout){
     setWorkouts((prevData) => [...prevData, newWorkout]);
   }
 
+//   UPDATE STATE TO DELETE WORKOUT
   const deleteWorkout = (workoutId) => {
     setWorkouts(workouts.filter((workout) => workout.id !== workoutId));
   };
 
+//   UPDATE STATE TO EDIT WORKOUT
   const updateWorkout = (updatedWorkout) => {
     setWorkouts((prevWorkout) => prevWorkout.map((workout) => (workout.id === updatedWorkout.id ? updatedWorkout : workout)));
   };
@@ -63,10 +66,11 @@ function UserProfile() {
       </div>
       <hr className="breakline" />
       <div>
-        <NewWorkoutForm addNewWorkout={addNewWorkout} />
+        <NewWorkoutForm addNewWorkout={addNewWorkout}/>
       </div>
     </div>
   );
 }
+
 
 export default UserProfile;
