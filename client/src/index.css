@@ -1,20 +1,23 @@
-/* :root {
-  --bg: #282c34;
-  --header: #fff;
-  --link: #61dafb;
-  --text: hsla(0, 0%, 100%, 0.88);
-} */
+:root {
+  --primary-color: #1abc9c;
+  --dark-accent: #2c3e50;
+  --light-accent: #ecf0f1;
+  --highlight-color: #e74c3c;
+  --cta-color: #f39c12;
+  --complementary-color: #3498db;
+  --secondary-accent: #8e44ad;
+}
 
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f8e6d2;
+  background-color: #ecf1f0;
 }
 
 .header {
-  background-color: #0872c3;
-  color: #F58426 ; 
+  background-color: var(--primary-color);
+  color: var(--dark-accent) ; 
   padding: 10px 0;
   text-align: center;
 }
@@ -32,7 +35,7 @@ body {
 }
 
 .nav-link {
-  color: #f5f6f8;
+  color: var(--dark-accent);
   text-decoration: none;
   margin-right: 20px;
 }
@@ -44,7 +47,7 @@ body {
 .breakline {
   border: 0;
   height: 1px;
-  background: #f8f6f6;
+  background: var(--light-accent);
   margin: 10px 0;
 }
 
@@ -52,7 +55,7 @@ body {
   margin: 20px 0;
   padding: 0;
   text-align: center;
-  color: #F58426;
+  color: var(--dark-accent);
 }
 
 button {
@@ -63,23 +66,23 @@ button {
 
 button[type="submit"] {
   background-color: #03bc1c;
-  color: #fff;
+  color: var(--light-accent);
   border: none;
   padding: 5px 20px;
   border-radius: 5px;
 }
 
 button[type="cancel"] {
-  background-color: #dc3545;
-  color: #fff;
+  background-color: var(--highlight-color);
+  color: var(--light-accent);
   border: none;
   padding: 5px 20px;
   border-radius: 5px;
 }
 
 button[type="delete"] {
-  background-color: #dc3545;
-  color: #fff;
+  background-color: var(--highlight-color);
+  color: var(--light-accent);
   border: none;
   padding: 5px 20px;
   border-radius: 5px;
@@ -88,8 +91,8 @@ button[type="delete"] {
 } 
 
 button[type="edit"] {
-  background-color: #0872c3;
-  color: #fff;
+  background-color: var(--complementary-color);
+  color: var(--light-accent);
   border: none;
   padding: 5px 20px;
   border-radius: 5px;
@@ -104,7 +107,7 @@ button[type="edit"] {
 
 .card {
   /* display: flex; */
-  border: 2px solid #E56020;
+  border: 2px solid var(--cta-color);
   border-radius: 10px;
   margin: 10px 0;
   padding: 20px;
@@ -141,3 +144,24 @@ button[type="edit"] {
   align-items: center;
   text-align: center;
 }
+
+.homepage-content {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.homepage-text {
+  font-size: 1.4em;  
+  margin-bottom: 1em;  /* Space between paragraphs */
+  color: #333;  /* Dark grey color for better readability */
+  text-align: center;
+}
+
+.footer {
+  color: #2c3e50;
+  padding: 10px;
+  text-align: center;
+}
+
+/* cool green color #1abc9c */

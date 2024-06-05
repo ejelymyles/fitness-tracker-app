@@ -22,6 +22,9 @@ function App() {
         <Route path="/gyms" element={<MapComponent />}/>
         <Route path="/users/:user_id/workouts/:workout_id" element={<WorkoutDetails />}/>
       </Routes>
+      <footer className="footer">
+        &copy; 2024 Fit Fusion. All rights reserved.
+      </footer>
     </div>
   );
 }
