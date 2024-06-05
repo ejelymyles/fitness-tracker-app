@@ -71,7 +71,6 @@ function LogCard({ log }){
                         <p>Weight: {weight} lbs</p>
                         <p>Distance: {distance} miles</p>
                         <p>Time: {time} seconds</p>
-                        {/* <NavLink to={`/users/${user_id}/workouts/${id}`} className="cardnav-link">View Workout Details</NavLink>  */}
                     </div>
                 )}
             </li> 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes, UNSAFE_ErrorResponseImpl } from "react-router-dom";
 import Header from './Header';
 import ExercisePage from "./ExercisePage";
@@ -10,7 +10,6 @@ import Homepage from "./Homepage";
 import MapComponent from "./MyMaps";
 
 function App() {
-
   return(
     <div>
       <Header />
@@ -26,6 +25,4 @@ function App() {
     </div>
   );
 }
-
-
 export default App;

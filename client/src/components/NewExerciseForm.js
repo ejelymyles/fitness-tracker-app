@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext} from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { MyContext } from "./MyContext";
@@ -92,5 +92,4 @@ function NewExerciseForm({ onCancel, exerciseValues, isEdit}){
         </div>
     )
 }
-
 export default NewExerciseForm;

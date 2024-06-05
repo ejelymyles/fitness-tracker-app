@@ -6,10 +6,9 @@ import { MyContext } from "./MyContext";
 
 function UserProfile() {
   const [user, setUser] = useState(null);
-//   const [workouts, setWorkouts] = useState([]);
   const { id } = useParams();
 
-const { workouts, addNewWorkout, setWorkouts} = useContext(MyContext);
+const { setWorkouts } = useContext(MyContext);
 
 //fetch user data to display on user profile
   useEffect(() => {
@@ -28,21 +27,6 @@ const { workouts, addNewWorkout, setWorkouts} = useContext(MyContext);
       setWorkouts(workouts);
     })
   }, [id, setWorkouts]);
-
-//   // UPDATE STATE TO ADD NEW WORKOUT
-//   function addNewWorkout(newWorkout){
-//     setWorkouts((prevData) => [...prevData, newWorkout]);
-//   }
-
-// //   UPDATE STATE TO DELETE WORKOUT
-//   const deleteWorkout = (workoutId) => {
-//     setWorkouts(workouts.filter((workout) => workout.id !== workoutId));
-//   };
-
-// //   UPDATE STATE TO EDIT WORKOUT
-//   const updateWorkout = (updatedWorkout) => {
-//     setWorkouts((prevWorkout) => prevWorkout.map((workout) => (workout.id === updatedWorkout.id ? updatedWorkout : workout)));
-//   };
 
 
   if (!user) {
@@ -64,7 +48,7 @@ const { workouts, addNewWorkout, setWorkouts} = useContext(MyContext);
       </div>
       <hr className="breakline"/>
       <div>
-        <WorkoutList workouts={workouts} />
+        <WorkoutList />
       </div>
       <hr className="breakline" />
       <div>
@@ -73,6 +57,4 @@ const { workouts, addNewWorkout, setWorkouts} = useContext(MyContext);
     </div>
   );
 }
-
-
 export default UserProfile;

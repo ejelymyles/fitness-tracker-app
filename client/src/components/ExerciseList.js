@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import ExerciseCard from "./ExerciseCard";
 import { MyContext } from "./MyContext";
 
@@ -12,5 +12,4 @@ function ExerciseList() {
     </div>
   );
 }
-
 export default ExerciseList;

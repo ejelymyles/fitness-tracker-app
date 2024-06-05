@@ -13,7 +13,7 @@ function ExerciseCard({ exercise }){
         setEditMode(!editMode)
     }
 
-    // DELETE REQUEST TO SPECIFIC EXERCISE
+    // DELETE SPECIFIC EXERCISE
     const handleDelete = () => {
         fetch(`/exercises/${id}`, {
             method: "DELETE",
@@ -53,7 +53,6 @@ function ExerciseCard({ exercise }){
         });
     };
 
-
     return(
         <div className="card">
             <li >
@@ -80,6 +79,4 @@ function ExerciseCard({ exercise }){
         </div>
     )
 }
-
-
 export default ExerciseCard;

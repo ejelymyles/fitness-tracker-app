@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { MyContext } from "./MyContext";
@@ -54,9 +54,6 @@ function NewUserForm({ onCancel, userValues, isEdit}){
         }
     })
 
-
-
-
     return(
         <div className='form'>
             <h2 className="list-header">{isEdit ? "Edit User" : "Submit Workout Partner"}</h2>
@@ -97,5 +94,4 @@ function NewUserForm({ onCancel, userValues, isEdit}){
         </div>
     )
 }
-
 export default NewUserForm;

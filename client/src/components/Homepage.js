@@ -1,9 +1,6 @@
 import React from "react";
 
-
 function Homepage() {
-
-
     return (
         <div className="homepage">
             <h2> Use this app to discover new workouts </h2>
@@ -15,5 +12,4 @@ function Homepage() {
         </div>
     )
 }
-
 export default Homepage

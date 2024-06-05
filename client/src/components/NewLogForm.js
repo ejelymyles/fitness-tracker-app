@@ -8,7 +8,6 @@ import { MyContext } from "./MyContext";
 function NewLogForm({ onCancel, logValues, isEdit }){
 
     const {addNewLog, handleEditLog} = useContext(MyContext);
-
     const { user_id, workout_id } = useParams();
 
     const formik = useFormik({
@@ -31,7 +30,7 @@ function NewLogForm({ onCancel, logValues, isEdit }){
         }),
         onSubmit: (values, {setSubmitting, resetForm, setErrors}) => {
             const url = isEdit ? `/users/${user_id}/workouts/${workout_id}/logs/${logValues.id}` : `/users/${user_id}/workouts/${workout_id}/logs`;
-            const method = isEdit ? "PATCH" : "POST"; //try passing initialValues.workout_id if this doesnt work 
+            const method = isEdit ? "PATCH" : "POST";
             
             fetch(url, {
                 method: method,
@@ -107,5 +106,4 @@ function NewLogForm({ onCancel, logValues, isEdit }){
         </div>
     )
 }
-
 export default NewLogForm;

@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext } from "react";
 import LogCard from "./LogCard";
 import { MyContext } from "./MyContext";
 
@@ -12,5 +11,4 @@ function LogList() {
     </div>
   );
 }
-
 export default LogList;

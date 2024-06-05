@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useParams } from "react-router-dom";
@@ -7,7 +7,6 @@ import { MyContext } from "./MyContext";
 function NewWorkoutForm({ onCancel, workoutValues, isEdit }){
 
     const { handleEditWorkout, addNewWorkout} = useContext(MyContext);
-
     const { id } = useParams();
 
     const formik = useFormik({
@@ -73,5 +72,4 @@ function NewWorkoutForm({ onCancel, workoutValues, isEdit }){
         </div>
     )
 }
-
 export default NewWorkoutForm;

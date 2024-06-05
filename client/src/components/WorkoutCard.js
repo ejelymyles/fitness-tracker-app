@@ -6,9 +6,9 @@ import { MyContext } from "./MyContext";
 function WorkoutCard({ workout }){
 
     const {updateWorkout, deleteWorkout} = useContext(MyContext);
+    const [editMode, setEditMode]= useState(false);
 
     const{id, user_id, date, duration } = workout
-    const [editMode, setEditMode]= useState(false);
 
     const toggleEditMode = () => {
         setEditMode(!editMode)
@@ -54,8 +54,6 @@ function WorkoutCard({ workout }){
         });
     };
 
-
-
     return(
         <div className="card">
             <li >
@@ -80,7 +78,4 @@ function WorkoutCard({ workout }){
         </div>
     )
 }
-
-// pass onSubmit={handleEditWorkout} to form 
-
 export default WorkoutCard;

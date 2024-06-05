@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext } from "react";
 import WorkoutCard from "./WorkoutCard";
 import { MyContext } from "./MyContext";
 
@@ -13,5 +12,4 @@ function WorkoutList() {
     </div>
   );
 }
-
 export default WorkoutList;

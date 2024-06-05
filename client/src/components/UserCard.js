@@ -80,5 +80,4 @@ function UserCard({ user }){
         </div>
     )
 }
-
 export default UserCard;

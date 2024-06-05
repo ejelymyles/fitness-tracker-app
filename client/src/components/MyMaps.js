@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect} from 'react';
 import { GoogleMap, LoadScript, Autocomplete, Marker, InfoWindow } from '@react-google-maps/api';
 
 const libraries = ['places'];
@@ -9,8 +9,8 @@ const mapContainerStyle = {
 };
 
 const center = {
-  lat: -3.745,
-  lng: -38.523,
+  lat: 40.782864,
+  lng: -73.965355,
 };
 
 const options = {
@@ -159,7 +159,6 @@ const MyComponent = () => {
     </LoadScript>
   );
 };
-
 export default MyComponent;
 
 

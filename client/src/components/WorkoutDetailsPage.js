@@ -6,10 +6,9 @@ import { MyContext } from "./MyContext";
 
 function WorkoutDetails() {
   const [workout, setWorkout] = useState(null);
-//   const [logs, setLogs] = useState([]);
   const { user_id, workout_id } = useParams();
 
-  const{ logs, setLogs, addNewLog, deleteLog, updateLog} = useContext(MyContext);
+  const{ setLogs } = useContext(MyContext);
 
 
   // fetch the users specific workout to dislay on this component
@@ -29,25 +28,6 @@ function WorkoutDetails() {
         setLogs(logs);
       });
   }, [user_id, workout_id], setLogs);
-
-
-//    // UPDATE STATE AND TO ADD NEW LOG
-//    function addNewLog(newLog){
-//     setLogs((prevData) => [...prevData, newLog]);
-//   }
-
-//   // UPDATE STATE TO DELETE LOG
-//   const deleteLog = (logId) => {
-//     setLogs(logs.filter((log) => log.id !== logId));
-//   };
-
-//   // UPDATE STATE TO EDIT LOG 
-//   const updateLog = (updatedLog) => {
-//     setLogs((prevLogs) => prevLogs.map((log) => (log.id === updatedLog.id ? updatedLog : log)));
-//   };
-
-
-
 
   if (!workout) {
     return <div>Loading...</div>;
@@ -75,5 +55,4 @@ function WorkoutDetails() {
     </div>
   );
 }
-
 export default WorkoutDetails;
