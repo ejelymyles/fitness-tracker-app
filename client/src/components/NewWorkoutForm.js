@@ -4,9 +4,9 @@ import * as Yup from 'yup';
 import { useParams } from "react-router-dom";
 import { MyContext } from "./MyContext";
 
-function NewWorkoutForm({ addNewWorkout, onSubmit, onCancel, initialValues, isEdit }){
+function NewWorkoutForm({ onCancel, initialValues, isEdit }){
 
-    // const { handleEditWorkout, addNewWorkout} = useContext(MyContext);
+    const { handleEditWorkout, addNewWorkout} = useContext(MyContext);
 
     const { id } = useParams();
 
@@ -43,7 +43,7 @@ function NewWorkoutForm({ addNewWorkout, onSubmit, onCancel, initialValues, isEd
                     addNewWorkout(workout); //UPDATE STATE
                     resetForm();
                 } else {
-                    onSubmit(workout); //MAKE PATCH (handleEditWorkout)
+                    handleEditWorkout(workout); //MAKE PATCH (handleEditWorkout)
                 }
             })
             .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))

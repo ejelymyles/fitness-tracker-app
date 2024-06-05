@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import NewLogForm from "./NewLogForm";
 import { MyContext } from "./MyContext";
 
-function LogCard({ log, onDelete, onUpdate}){
+function LogCard({ log }){
 
     const{sets, reps, weight, distance, time, exercise, workout_id, id } = log
     const exerciseName = exercise ? exercise.name : null;
     const { user_id } = useParams();
     const [editMode, setEditMode] = useState(false);
+
+    const {deleteLog, updateLog} = useContext(MyContext);
 
     const toggleEditMode = () => {
         setEditMode(!editMode)
@@ -24,14 +26,14 @@ function LogCard({ log, onDelete, onUpdate}){
             if (!response.ok) {
                 throw new Error("Network response error");
             }
-            onDelete(id); // UPDATE STATE
+            deleteLog(id); // UPDATE STATE
         })
         .catch((error) => {
             console.error("There was a problem deleting the workout:", error);
         })
     }
 
-    
+
     // EDIT SPECIFIC LOG
     const handleEditLog = (values) => {
         fetch(`/users/${user_id}/workouts/${workout_id}/logs/${id}`, {
@@ -48,7 +50,7 @@ function LogCard({ log, onDelete, onUpdate}){
             return response.json();
         })
         .then((updatedLog) => {
-            onUpdate(updatedLog); //UPDATE STATE
+            updateLog(updatedLog); //UPDATE STATE
             toggleEditMode();
         })
         .catch((error) => {
@@ -60,7 +62,7 @@ function LogCard({ log, onDelete, onUpdate}){
         <div className="card">
             <li >
                 {editMode ? (
-                    <NewLogForm initialValues={{id, sets, reps, weight, distance, time, workout_id}} onSubmit={handleEditLog} onCancel={toggleEditMode} isEdit={true}/>
+                    <NewLogForm initialValues={{id, sets, reps, weight, distance, time, workout_id}} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
                     <div>
                         <p> Exercise: {exerciseName}</p>

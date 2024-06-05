@@ -58,7 +58,7 @@ function UserCard({ user }){
         <div className="card">
             <li>
                 {editMode ? (
-                    <NewUserForm initialValues={{ id, username, email, age, height, weight}} onSubmit={handleEditUser} onCancel={toggleEditMode} isEdit={true}/>
+                    <NewUserForm initialValues={{ id, username, email, age, height, weight}} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
                     <div>
                         <h3>{username}</h3>

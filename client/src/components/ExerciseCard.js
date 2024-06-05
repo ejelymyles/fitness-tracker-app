@@ -5,8 +5,9 @@ import { MyContext } from "./MyContext";
 function ExerciseCard({ exercise }){
 
     const {updateExercise, deleteExercise} = useContext(MyContext);
-    const{id, name, category, muscle_group, equipment, description} = exercise
     const [editMode, setEditMode]= useState(false);
+    
+    const{id, name, category, muscle_group, equipment, description} = exercise
 
     const toggleEditMode = () => {
         setEditMode(!editMode)
@@ -57,7 +58,7 @@ function ExerciseCard({ exercise }){
         <div className="card">
             <li >
                 {editMode ? (
-                    <NewExerciseForm initialValues={{id , name, category, muscle_group, equipment, description}} onSubmit={handleEditExercise} onCancel={toggleEditMode} isEdit={true}/>
+                    <NewExerciseForm initialValues={{id , name, category, muscle_group, equipment, description}} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
                     <div>
                         <h3>{name}</h3>

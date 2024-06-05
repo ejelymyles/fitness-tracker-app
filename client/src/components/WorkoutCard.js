@@ -3,9 +3,9 @@ import { NavLink } from "react-router-dom";
 import NewWorkoutForm from "./NewWorkoutForm";
 import { MyContext } from "./MyContext";
 
-function WorkoutCard({ workout, onDelete, onUpdate }){
+function WorkoutCard({ workout }){
 
-    // const {updateWorkout, deleteWorkout} = useContext(MyContext);
+    const {updateWorkout, deleteWorkout} = useContext(MyContext);
 
     const{id, user_id, date, duration } = workout
     const [editMode, setEditMode]= useState(false);
@@ -23,7 +23,7 @@ function WorkoutCard({ workout, onDelete, onUpdate }){
             if (!response.ok) {
                 throw new Error("Network response error");
             }
-            onDelete(id); //UPDATE STATE
+            deleteWorkout(id); //UPDATE STATE
         })
         .catch((error) => {
             console.error("There was a problem deleting the workout:", error);
@@ -46,7 +46,7 @@ function WorkoutCard({ workout, onDelete, onUpdate }){
             return response.json();
         })
         .then((updatedWorkout) => {
-            onUpdate(updatedWorkout); // UPDATE STATE
+            updateWorkout(updatedWorkout); // UPDATE STATE
             toggleEditMode();
         })
         .catch((error) => {
@@ -60,7 +60,7 @@ function WorkoutCard({ workout, onDelete, onUpdate }){
         <div className="card">
             <li >
                 {editMode ? (
-                    <NewWorkoutForm initialValues={{id, user_id, date, duration}} onSubmit={handleEditWorkout} onCancel={toggleEditMode} isEdit={true}/>
+                    <NewWorkoutForm initialValues={{id, user_id, date, duration}} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
                     <div>
                         <h3>Workout Session</h3>

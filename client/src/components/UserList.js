@@ -3,7 +3,6 @@ import UserCard from "./UserCard";
 import { MyContext } from "./MyContext";
 
 function UserList() {
-
     const { users } = useContext(MyContext);
 
   return (

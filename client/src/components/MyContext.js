@@ -56,10 +56,69 @@ const MyProvider = ({ children }) => {
         setExercises((prevExercises) => prevExercises.map((exercise) => (exercise.id === updatedExercise.id ? updatedExercise : exercise)));
       };
     
+
+      //MANAGE STATE FOR WORKOUTS
+    const [workouts, setWorkouts] = useState([]);
+
+      // UPDATE STATE TO ADD NEW WORKOUT
+    function addNewWorkout(newWorkout){
+        setWorkouts((prevData) => [...prevData, newWorkout]);
+    }
+
+//   UPDATE STATE TO DELETE WORKOUT
+    const deleteWorkout = (workoutId) => {
+        setWorkouts(workouts.filter((workout) => workout.id !== workoutId));
+    };
+
+//   UPDATE STATE TO EDIT WORKOUT
+    const updateWorkout = (updatedWorkout) => {
+        setWorkouts((prevWorkout) => prevWorkout.map((workout) => (workout.id === updatedWorkout.id ? updatedWorkout : workout)));
+    };
+
+
+//  MANAGE STATE FOR LOGS
+    const [logs, setLogs] = useState([]);
+
+
+    // UPDATE STATE AND TO ADD NEW LOG
+   function addNewLog(newLog){
+    setLogs((prevData) => [...prevData, newLog]);
+  }
+
+  // UPDATE STATE TO DELETE LOG
+  const deleteLog = (logId) => {
+    setLogs(logs.filter((log) => log.id !== logId));
+  };
+
+  // UPDATE STATE TO EDIT LOG 
+  const updateLog = (updatedLog) => {
+    setLogs((prevLogs) => prevLogs.map((log) => (log.id === updatedLog.id ? updatedLog : log)));
+  };
   
 
   return (
-    <MyContext.Provider value={{ users, addNewUser, deleteUser, updateUser, exercises, addNewExercise, deleteExercise, updateExercise}}>
+    <MyContext.Provider value={{ 
+        users,
+        setUsers, 
+        addNewUser, 
+        deleteUser, 
+        updateUser, 
+        exercises, 
+        setExercises,
+        addNewExercise, 
+        deleteExercise, 
+        updateExercise, 
+        workouts, 
+        setWorkouts, 
+        addNewWorkout, 
+        deleteWorkout, 
+        updateWorkout,
+        logs,
+        setLogs,
+        addNewLog,
+        deleteLog,
+        updateLog,
+        }}>
       {children}
     </MyContext.Provider>
   );
