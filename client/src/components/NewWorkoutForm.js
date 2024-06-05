@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { useParams } from "react-router-dom";
 import { MyContext } from "./MyContext";
 
-function NewWorkoutForm({ onCancel, initialValues, isEdit }){
+function NewWorkoutForm({ onCancel, workoutValues, isEdit }){
 
     const { handleEditWorkout, addNewWorkout} = useContext(MyContext);
 
@@ -21,7 +21,7 @@ function NewWorkoutForm({ onCancel, initialValues, isEdit }){
 
         }),
         onSubmit: (values, {setSubmitting, resetForm, setErrors}) => {
-            const url = isEdit ? `/users/${initialValues.user_id}/workouts/${initialValues.id}` : `/users/${id}/workouts`;
+            const url = isEdit ? `/users/${workoutValues.user_id}/workouts/${workoutValues.id}` : `/users/${id}/workouts`;
             const method = isEdit ? "PATCH" : "POST";
 
             fetch(url, {

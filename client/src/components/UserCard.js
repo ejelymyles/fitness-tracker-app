@@ -5,7 +5,7 @@ import { MyContext } from "./MyContext";
 
 function UserCard({ user }){
 
-    const {deleteUser, updateUser} = useContext(MyContext);
+    const {deleteUser, updateUser } = useContext(MyContext);
     const [editMode, setEditMode] = useState(false);
 
     const{id, username, email , age, height, weight} = user;
@@ -58,7 +58,7 @@ function UserCard({ user }){
         <div className="card">
             <li>
                 {editMode ? (
-                    <NewUserForm initialValues={{ id, username, email, age, height, weight}} onCancel={toggleEditMode} isEdit={true}/>
+                    <NewUserForm userValues={{ id, username, email, age, height, weight}} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
                     <div>
                         <h3>{username}</h3>

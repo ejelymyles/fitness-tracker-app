@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { MyContext } from "./MyContext";
 
 
-function NewExerciseForm({ onCancel, initialValues, isEdit}){
+function NewExerciseForm({ onCancel, exerciseValues, isEdit}){
 
     const { addNewExercise, handleEditExercise } = useContext(MyContext);
 
@@ -24,7 +24,7 @@ function NewExerciseForm({ onCancel, initialValues, isEdit}){
             description: Yup.string()
         }),
         onSubmit: (values, {setSubmitting, resetForm, setErrors}) => {
-            const url = isEdit ? `/exercises/${initialValues.id}` : "/exercises";
+            const url = isEdit ? `/exercises/${exerciseValues.id}` : "/exercises";
             const method = isEdit ? "PATCH" : "POST";
 
             fetch(url, {

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { MyContext } from "./MyContext";
 
 
-function NewLogForm({ onCancel, initialValues, isEdit }){
+function NewLogForm({ onCancel, logValues, isEdit }){
 
     const {addNewLog, handleEditLog} = useContext(MyContext);
 
@@ -30,7 +30,7 @@ function NewLogForm({ onCancel, initialValues, isEdit }){
 
         }),
         onSubmit: (values, {setSubmitting, resetForm, setErrors}) => {
-            const url = isEdit ? `/users/${user_id}/workouts/${workout_id}/logs/${initialValues.id}` : `/users/${user_id}/workouts/${workout_id}/logs`;
+            const url = isEdit ? `/users/${user_id}/workouts/${workout_id}/logs/${logValues.id}` : `/users/${user_id}/workouts/${workout_id}/logs`;
             const method = isEdit ? "PATCH" : "POST"; //try passing initialValues.workout_id if this doesnt work 
             
             fetch(url, {

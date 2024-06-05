@@ -31,6 +31,8 @@ const MyProvider = ({ children }) => {
     };
 
 
+
+
     // MANAGE STATE FOR ALL EXERCISES
     const [exercises, setExercises] = useState([]);
 
@@ -57,6 +59,8 @@ const MyProvider = ({ children }) => {
       };
     
 
+
+
       //MANAGE STATE FOR WORKOUTS
     const [workouts, setWorkouts] = useState([]);
 
@@ -76,6 +80,8 @@ const MyProvider = ({ children }) => {
     };
 
 
+
+    
 //  MANAGE STATE FOR LOGS
     const [logs, setLogs] = useState([]);
 

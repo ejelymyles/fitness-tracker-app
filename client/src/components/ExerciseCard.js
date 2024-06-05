@@ -6,7 +6,7 @@ function ExerciseCard({ exercise }){
 
     const {updateExercise, deleteExercise} = useContext(MyContext);
     const [editMode, setEditMode]= useState(false);
-    
+
     const{id, name, category, muscle_group, equipment, description} = exercise
 
     const toggleEditMode = () => {
@@ -58,7 +58,7 @@ function ExerciseCard({ exercise }){
         <div className="card">
             <li >
                 {editMode ? (
-                    <NewExerciseForm initialValues={{id , name, category, muscle_group, equipment, description}} onCancel={toggleEditMode} isEdit={true}/>
+                    <NewExerciseForm exerciseValues={{id , name, category, muscle_group, equipment, description}} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
                     <div>
                         <h3>{name}</h3>

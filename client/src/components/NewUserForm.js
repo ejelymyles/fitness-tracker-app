@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { MyContext } from "./MyContext";
 
 
-function NewUserForm({ onCancel, initialValues, isEdit}){
+function NewUserForm({ onCancel, userValues, isEdit}){
 
     const{ addNewUser, handleEditUser } = useContext(MyContext);
 
@@ -24,7 +24,7 @@ function NewUserForm({ onCancel, initialValues, isEdit}){
             weight: Yup.number().required("Weight is required").positive("Weight must be a positive number").integer("Weight must be an integer"),
         }),
         onSubmit: (values, {setSubmitting, resetForm, setErrors}) => {
-            const url = isEdit ? `/users/${initialValues.id}` : "/users";
+            const url = isEdit ? `/users/${userValues.id}` : "/users";
             const method = isEdit ? "PATCH" : "POST";
 
             fetch(url, {
