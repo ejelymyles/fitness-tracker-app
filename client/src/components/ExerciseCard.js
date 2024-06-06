@@ -57,7 +57,7 @@ function ExerciseCard({ exercise }){
         <div className="card">
             <li >
                 {editMode ? (
-                    <NewExerciseForm exerciseValues={{id , name, category, muscle_group, equipment, description}} onCancel={toggleEditMode} isEdit={true}/>
+                    <NewExerciseForm exerciseValues={{id , name, category, muscle_group, equipment, description}} onCancel={toggleEditMode} isEdit={true} />
                 ) : (
                     <div>
                         <h3 className="card-text">{name}</h3>

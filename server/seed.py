@@ -39,8 +39,8 @@ if __name__ == '__main__':
                 username = username,
                 email = email,
                 age =  randint(15, 75), #add number between 15 & 75
-                height = randint(48, 90), # add height between 4 feet & 7'5 feet (48-90 inches)
-                weight = randint(70, 400), # add weight between 70 & 400
+                height = randint(48, 84), # add height between 4 feet & 7 feet (48-84 inches)
+                weight = randint(70, 300), # add weight between 70 & 300
             )
             db.session.add(user)
         db.session.commit()
@@ -55,9 +55,9 @@ if __name__ == '__main__':
             exercise = Exercise(
                 name = fake.random_element(elements=("exercise here")), #add fake name
                 category = fake.random_element(elements=("cardio", "strength")),
-                muscle_group = fake.random_element(elements=("chest", "triceps", "back", "biceps", "shoulders", "traps", "lats", "legs", "abs")), #add elements 
+                muscle_group = fake.random_element(elements=("chest", "triceps", "back", "biceps", "shoulders", "traps", "lats", "legs", "abs", "quads", "hamstrings", "glutes")), #add elements 
                 equipment = fake.random_element(elements=("barbell", "dumbells ", "kettle ball", "medince ball", "resistance bands")), #add elements 
-                description = description_preview, # or add fake elements 
+                description = description_preview, # or add fake elements of ecercises
             )
             db.session.add(exercise)
         db.session.commit()

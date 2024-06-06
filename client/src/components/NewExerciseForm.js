@@ -6,7 +6,7 @@ import { MyContext } from "./MyContext";
 
 function NewExerciseForm({ onCancel, exerciseValues, isEdit}){
 
-    const { addNewExercise, handleEditExercise } = useContext(MyContext);
+    const { addNewExercise, handleEditExercise  } = useContext(MyContext);
 
     const formik = useFormik({
         initialValues: {
