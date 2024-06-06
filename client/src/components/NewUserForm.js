@@ -19,9 +19,9 @@ function NewUserForm({ onCancel, userValues, isEdit}){
         validationSchema: Yup.object({
             username: Yup.string().required("Username is required"),
             email: Yup.string().email("Invalid email address").required("Email is required"),
-            age: Yup.number().required("Age is required").positive("Age must be a positive number").integer("Age must be an integer"),
-            height: Yup.number().required("Height is required").positive("Height must be a positive number").integer("Height must be an integer"),
-            weight: Yup.number().required("Weight is required").positive("Weight must be a positive number").integer("Weight must be an integer"),
+            age: Yup.number().required("Age is required").positive("Age must be a positive number").integer("Age must be an integer").typeError("Age must be a number"),
+            height: Yup.number().required("Height is required").positive("Height must be a positive number").integer("Height must be an integer").typeError("Height must be a number"),
+            weight: Yup.number().required("Weight is required").positive("Weight must be a positive number").integer("Weight must be an integer").typeError("Weight must be a number"),
         }),
         onSubmit: (values, {setSubmitting, resetForm, setErrors}) => {
             const url = isEdit ? `/users/${userValues.id}` : "/users";

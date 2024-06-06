@@ -20,12 +20,12 @@ function NewLogForm({ onCancel, logValues, isEdit }){
             time: "",
         },
         validationSchema: Yup.object({
-            exercise_id: Yup.number().required("Exercise reference number is required"),
-            sets: Yup.number().required("Sets are required").positive("Sets must be greater than 0"),
-            reps: Yup.number().required("Reps are required").positive("Reps must be greater than 0"),
-            weight: Yup.number().positive("Weight is measured in pounds and must be greater than 0"),
-            distance: Yup.number().positive("Distance is measured in miles and must be greater than 0"),
-            time: Yup.number().positive("Time is measured in minutes and must be greater than 0"),
+            exercise_id: Yup.number().required("Exercise reference number is required").typeError("Exercise Reference must be a number"),
+            sets: Yup.number().required("Sets are required").positive("Sets must be greater than 0").typeError("Sets must be a number"),
+            reps: Yup.number().required("Reps are required").positive("Reps must be greater than 0").typeError("Reps must be a number"),
+            weight: Yup.number().positive("Weight is measured in pounds and must be greater than 0").typeError("Weight must be a number"),
+            distance: Yup.number().positive("Distance is measured in miles and must be greater than 0").typeError("Distance must be a number"),
+            time: Yup.number().positive("Time is measured in minutes and must be greater than 0").typeError("Time must be a number"),
 
         }),
         onSubmit: (values, {setSubmitting, resetForm, setErrors}) => {
@@ -81,20 +81,20 @@ function NewLogForm({ onCancel, logValues, isEdit }){
                 <p style={{ color: 'red'}}>{formik.errors.reps}</p>
                 <br />
 
-                <label htmlFor='weight'>Weight</label>
+                <label htmlFor='weight'>Weight (lbs)</label>
                 <br />
                 <input id="weight" name='weight' type="text" onChange={formik.handleChange} value={formik.values.weight} />
                 <p style={{ color: 'red'}}>{formik.errors.weight}</p>
                 <br />
 
-                <label htmlFor='distance'>Distance</label>
+                <label htmlFor='distance'>Distance (miles)</label>
                 <br />
 
                 <input id="distance" name="distance" type="text" onChange={formik.handleChange} value={formik.values.distance} />
                 <p style={{ color: 'red'}}>{formik.errors.distance}</p>
                 <br />
 
-                <label htmlFor='time'>Time</label>
+                <label htmlFor='time'>Time (seconds)</label>
                 <br />
 
                 <input id="time" name="time" type="text" onChange={formik.handleChange} value={formik.values.time}/>

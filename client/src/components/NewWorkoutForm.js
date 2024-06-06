@@ -15,8 +15,8 @@ function NewWorkoutForm({ onCancel, workoutValues, isEdit }){
             duration: "",
         },
         validationSchema: Yup.object({
-            date: Yup.date().required("Date is required"),
-            duration: Yup.number().required("Duration is required").positive("Duration must be greater than 0"),
+            date: Yup.date().required("Date is required").typeError("Date must be numbers formatted in YYYY-MM-DD"),
+            duration: Yup.number().required("Duration is required").positive("Duration must be greater than 0").typeError("Duration must be a number")
 
         }),
         onSubmit: (values, {setSubmitting, resetForm, setErrors}) => {
