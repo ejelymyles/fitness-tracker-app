@@ -76,13 +76,13 @@ function NewUserForm({ onCancel, userValues, isEdit}){
                 <p style={{ color: 'red'}}>{formik.errors.age}</p>
                 <br />
 
-                <label htmlFor='height'>Height</label>
+                <label htmlFor='height'>Height (Inches)</label>
                 <br />
                 <input id="height" name='height' type="text" onChange={formik.handleChange} value={formik.values.height} />
                 <p style={{ color: 'red'}}>{formik.errors.height}</p>
                 <br />
 
-                <label htmlFor='weight'>Wieght</label>
+                <label htmlFor='weight'>Weight (lbs)</label>
                 <br />
 
                 <input id="weight" name="weight" type="text" onChange={formik.handleChange} value={formik.values.weight}/>

@@ -5,7 +5,6 @@ import NewExerciseForm from "./NewExerciseForm";
 function ExercisePage(){
     return(
         <div>
-            <h2 className="list-header">Post A New Exercise To The Community</h2>
             <NewExerciseForm />
             <hr className="breakline"/>
             <ExerciseList />

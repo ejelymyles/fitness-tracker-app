@@ -61,11 +61,12 @@ function UserCard({ user }){
                     <NewUserForm userValues={{ id, username, email, age, height, weight}} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
                     <div>
-                        <h3>{username}</h3>
-                        <p>email: {email}</p>
-                        <p>age: {age}</p>
-                        <p>height: {height}''</p>
-                        <p>weight: {weight} lbs</p> 
+                        <h3 className="card-text">{username}</h3>
+                        <p className="card-text">Email: <span className="card-value">{email}</span> </p>
+                        <p className="card-text">Age: <span className="card-value">{age}</span> </p>
+                        <p className="card-text">Height: <span className="card-value">{height}''</span> </p>
+                        <p className="card-text">Weight: <span className="card-value">{weight} lbs</span> </p> 
+                        <br />
                         <NavLink to={`/users/${id}`} className="cardnav-link">View User Profile</NavLink> 
                     </div>
                 )}
@@ -77,6 +78,7 @@ function UserCard({ user }){
                     <button type="delete" onClick={handleDelete}>Delete</button>
                 </div>
             )}
+            <hr className="card-breakline"/>
         </div>
     )
 }

@@ -65,12 +65,12 @@ function LogCard({ log }){
                     <NewLogForm logValues={{id, sets, reps, weight, distance, time, workout_id}} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
                     <div>
-                        <p> Exercise: {exerciseName}</p>
-                        <p>Sets: {sets}</p>
-                        <p>Reps: {reps}</p>
-                        <p>Weight: {weight} lbs</p>
-                        <p>Distance: {distance} miles</p>
-                        <p>Time: {time} seconds</p>
+                        <p className="card-text">Exercise: <span className="card-value">{exerciseName}</span> </p>
+                        <p className="card-text">Sets: <span className="card-value">{sets}</span> </p>
+                        <p className="card-text">Reps: <span className="card-value">{reps}</span> </p>
+                        <p className="card-text">Weight: <span className="card-value">{weight} lbs</span> </p>
+                        <p className="card-text">Distance: <span className="card-value">{distance} miles</span> </p>
+                        <p className="card-text">Time: <span className="card-value">{time} seconds</span> </p>
                     </div>
                 )}
             </li> 
@@ -81,7 +81,7 @@ function LogCard({ log }){
                     <button type="delete" onClick={handleDelete}>Delete</button> 
                 </div>
             )}
-            <hr className="breakline"/>
+            <hr className="card-breakline"/>
         </div>
     )
 }

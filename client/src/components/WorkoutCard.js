@@ -61,9 +61,10 @@ function WorkoutCard({ workout }){
                     <NewWorkoutForm workoutValues={{id, user_id, date, duration}} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
                     <div>
-                        <h3>Workout Session</h3>
-                        <p>Date: {date}</p>
-                        <p>Duration: {duration} minutes</p>
+                        <h3 className="card-text">Workout Session</h3>
+                        <p className="card-text">Date: <span className="card-value">{date}</span> </p>
+                        <p className="card-text">Duration: <span className="card-value">{duration} minutes</span> </p>
+                        <br />
                          <NavLink to={`/users/${user_id}/workouts/${id}`} className="cardnav-link">View Workout Details</NavLink> 
                     </div>
                 )}
@@ -75,7 +76,9 @@ function WorkoutCard({ workout }){
                     <button type="delete" onClick={handleDelete}>Delete</button>
                 </div>
             )}
+            <hr className="card-breakline"/>
         </div>
+        
     )
 }
 export default WorkoutCard;

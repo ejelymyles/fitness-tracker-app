@@ -60,12 +60,12 @@ function ExerciseCard({ exercise }){
                     <NewExerciseForm exerciseValues={{id , name, category, muscle_group, equipment, description}} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
                     <div>
-                        <h3>{name}</h3>
-                        <p>Category: {category}</p>
-                        <p>Muscle Group: {muscle_group}</p>
-                        <p>Equipment Needed: {equipment}</p>
-                        <p>Description: {description}</p> 
-                        <p>Exercise Reference # {id}</p>
+                        <h3 className="card-text">{name}</h3>
+                        <p className="card-text">Category: <span className="card-value">{category}</span> </p>
+                        <p className="card-text">Muscle Group: <span className="card-value">{muscle_group}</span> </p>
+                        <p className="card-text">Equipment Needed: <span className="card-value">{equipment}</span> </p>
+                        <p className="card-text">Description: <span className="card-value">{description}</span> </p> 
+                        <p className="card-text">Exercise Reference # <span className="card-value">{id}</span> </p>
                     </div>
                 )}
             </li>  
@@ -76,6 +76,7 @@ function ExerciseCard({ exercise }){
                     <button type="delete" onClick={handleDelete}>Delete</button>
                 </div>
             )}
+            <hr className="card-breakline"/>
         </div>
     )
 }

@@ -19,6 +19,8 @@ const options = {
 };
 
 const MyComponent = () => {
+  
+
   const [map, setMap] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(center);
   const [autocomplete, setAutocomplete] = useState(null);
@@ -94,7 +96,7 @@ const MyComponent = () => {
   };
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyAsUjfimHhLBuNSdM9AVMLLDbTIEijA6r0" libraries={libraries}>
+    <LoadScript googleMapsApiKey="" libraries={libraries}>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={14}

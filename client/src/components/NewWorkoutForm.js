@@ -61,7 +61,7 @@ function NewWorkoutForm({ onCancel, workoutValues, isEdit }){
                 <p style={{ color: 'red'}}>{formik.errors.date}</p>
                 <br />
 
-                <label htmlFor='duration'>Duration</label>
+                <label htmlFor='duration'>Duration (Minutes)</label>
                 <br />
                 <input id="duration" name='duration' type="text" onChange={formik.handleChange} value={formik.values.duration}/>
                 <p style={{ color: 'red'}}>{formik.errors.duration}</p>

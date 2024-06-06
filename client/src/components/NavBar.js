@@ -9,6 +9,7 @@ function NavBar(){
             <NavLink to="/newuser" className="nav-link">New Workout Partners</NavLink>
             <NavLink to="/myfitness" className="nav-link">Fitness Hub</NavLink>
             <NavLink to="/gyms" className="nav-link">Gym Locator</NavLink>
+            <hr className="header-breakline"/>
         </div>
     )
 }

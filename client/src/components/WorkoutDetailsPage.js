@@ -41,8 +41,8 @@ function WorkoutDetails() {
     <div>
       <div className="workout details-page">
         <h2 className="list-header">Workout Details</h2>
-        <p>Date: {date}</p>
-        <p>Duration {duration} minutes</p>
+        <p className="workout-detail-text">Date: <span className="value">{date}</span> </p>
+        <p className="workout-detail-text">Duration: <span className="value">{duration} minutes</span> </p>
       </div>
       <hr className="breakline"/>
       <div>

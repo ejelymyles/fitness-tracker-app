@@ -38,22 +38,22 @@ const { setWorkouts } = useContext(MyContext);
 
   return (
     <div>
-      <div className="details-page">
+      <div className="user-profile-content">
         <h2 className="list-header">User Profile</h2>
-        <p>Username: {username}</p>
-        <p>Email: {email}</p>
-        <p>Age: {age}</p>
-        <p>Height: {height}''</p>
-        <p>Height: {weight} lbs</p>
+        <p className="user-profile-text">Username: <span className="value">{username}</span> </p>
+        <p className="user-profile-text">Email: <span className="value">{email}</span> </p>
+        <p className="user-profile-text">Age: <span className="value">{age}</span> </p>
+        <p className="user-profile-text">Height: <span className="value">{height} ''</span> </p>
+        <p className="user-profile-text">Weight: <span className="value">{weight} lbs</span> </p>
       </div>
       <hr className="breakline"/>
       <div>
         <WorkoutList />
       </div>
-      <hr className="breakline" />
       <div>
         <NewWorkoutForm />
       </div>
+      <hr className="breakline" />
     </div>
   );
 }

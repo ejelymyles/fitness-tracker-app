@@ -56,6 +56,7 @@ function NewExerciseForm({ onCancel, exerciseValues, isEdit}){
  
     return(
         <div className='form'>
+            <h2 className="list-header">{isEdit ? "Edit Exercise" : "Post New Exercise"}</h2>
             <form onSubmit={formik.handleSubmit}>
                 <label htmlFor='name'>Name</label>
                 <br />
@@ -63,7 +64,7 @@ function NewExerciseForm({ onCancel, exerciseValues, isEdit}){
                 <p style={{ color: 'red'}}>{formik.errors.name}</p>
                 <br />
 
-                <label htmlFor='category'>category</label>
+                <label htmlFor='category'>Category</label>
                 <br />
                 <input id="category" name='category' type="text" onChange={formik.handleChange} value={formik.values.category}/>
                 <p style={{ color: 'red'}}>{formik.errors.category}</p>

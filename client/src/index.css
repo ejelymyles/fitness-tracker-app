@@ -6,6 +6,8 @@
   --cta-color: #f39c12;
   --complementary-color: #3498db;
   --secondary-accent: #8e44ad;
+  --secondary-light-accent: #ffd1a1;
+  --third-light-accent: #d0e6f7;
 }
 
 body {
@@ -17,8 +19,7 @@ body {
 
 .header {
   background-color: var(--primary-color);
-  color: var(--dark-accent) ; 
-  padding: 10px 0;
+  color: var(--dark-accent); 
   text-align: center;
 }
 
@@ -38,6 +39,7 @@ body {
   color: var(--dark-accent);
   text-decoration: none;
   margin-right: 20px;
+  font-weight: bold;
 }
 
 .nav-link:hover {
@@ -46,10 +48,18 @@ body {
 
 .breakline {
   border: 0;
-  height: 1px;
-  background: var(--light-accent);
+  height:3px;
+  background: var(--primary-color);
   margin: 10px 0;
 }
+
+.header-breakline {
+  border: 0;
+  height:3px;
+  background: var(--dark-accent);
+  margin: 10px 0;
+}
+
 
 .list-header {
   margin: 20px 0;
@@ -107,11 +117,11 @@ button[type="edit"] {
 
 .card {
   /* display: flex; */
-  border: 2px solid var(--cta-color);
+  border: 3px solid var(--cta-color);
   border-radius: 10px;
   margin: 10px 0;
   padding: 20px;
-  background-color: #ddd;
+  background-color: #fdefe0;
 }
 
 .card-container {
@@ -126,13 +136,34 @@ button[type="edit"] {
 
 .card h3 {
   margin-top: 0;
-  color: #000409;
+  color: var(--dark-accent);
   text-align: center;
 }
 
 .card p {
   margin: 10px 0;
 }
+
+.card-breakline {
+  border: 0;
+  height:2px;
+  background: var(--cta-color);
+  margin: 10px 0;
+}
+
+.card-text {
+  font-size: 1.2em;  
+  margin-bottom: 1em;  /* Space between paragraphs */
+  color: var(--cta-color);  /* Dark grey color for better readability */
+  text-align: left;
+  font-weight: bold;
+}
+
+.card-value {
+  color: var(--dark-accent); /* Different color for the values */
+  font-weight: normal; /* Optional: Make the values bold */
+}
+
 
 .error-message {
   color: red;
@@ -157,6 +188,56 @@ button[type="edit"] {
   color: #333;  /* Dark grey color for better readability */
   text-align: center;
 }
+
+.user-profile-content {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.user-profile-text {
+  font-size: 1.4em;  
+  margin-bottom: 1em;  /* Space between paragraphs */
+  color: #333;  /* Dark grey color for better readability */
+  text-align: center;
+  font-weight: bold;
+}
+
+.user-profile-text .value {
+  color: var(--primary-color); /* Different color for the values */
+  font-weight: bold; /* Optional: Make the values bold */
+}
+
+.workout-detail-text {
+  font-size: 1.4em;  
+  margin-bottom: 1em;  /* Space between paragraphs */
+  color: #333;  /* Dark grey color for better readability */
+  text-align: center;
+  font-weight: bold;
+}
+
+.workout-detail-text .value {
+  color: var(--primary-color); /* Different color for the values */
+  font-weight: bold; /* Optional: Make the values bold */
+}
+
+.cardnav-link {
+  text-align: center;      /* Ensures text inside the link is centered */
+  padding: 5px 50px;     
+  background-color: #fdefe0;
+  color: var(--cta-color);          
+  text-decoration: none; 
+  border-radius: 10px;
+  font-size: 1em;
+  font-weight: bold;   
+}
+
+/* Optional: Add hover effects */
+.cardnav-link:hover {
+  background-color: var(--secondary-light-accent);
+}
+
+
 
 .footer {
   color: #2c3e50;
