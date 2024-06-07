@@ -5,9 +5,9 @@ import { useParams } from "react-router-dom";
 import { MyContext } from "./MyContext";
 
 
-function NewLogForm({ onCancel, logValues, isEdit }){
+function NewLogForm({ onCancel, editLog, logValues, isEdit }){
 
-    const {addNewLog, handleEditLog} = useContext(MyContext);
+    const { addNewLog } = useContext(MyContext);
     const { user_id, workout_id } = useParams();
 
     const formik = useFormik({
@@ -51,7 +51,7 @@ function NewLogForm({ onCancel, logValues, isEdit }){
                     addNewLog(log); //UPDATE STATE
                     resetForm();
                 } else {
-                    handleEditLog(log) //MAKE PATCH (handleEditLog)
+                    editLog(log) //MAKE PATCH (handleEditLog)
                 }
             })
             .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))

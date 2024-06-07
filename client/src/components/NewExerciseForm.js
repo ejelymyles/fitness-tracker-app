@@ -4,9 +4,9 @@ import * as Yup from 'yup';
 import { MyContext } from "./MyContext";
 
 
-function NewExerciseForm({ onCancel, exerciseValues, isEdit}){
+function NewExerciseForm({ onCancel, editExercise, exerciseValues, isEdit}){
 
-    const { addNewExercise, handleEditExercise  } = useContext(MyContext);
+    const { addNewExercise } = useContext(MyContext);
 
     const formik = useFormik({
         initialValues: {
@@ -46,7 +46,7 @@ function NewExerciseForm({ onCancel, exerciseValues, isEdit}){
                     addNewExercise(exercise); //UPDATE STATE
                     resetForm();
                 } else {
-                    handleEditExercise(exercise) //MAKE PATCH REQUEST (handleEditExercise)
+                    editExercise(exercise); //MAKE PATCH REQUEST (handleEditExercise)
                 }
             })
             .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))

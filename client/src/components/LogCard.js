@@ -62,7 +62,7 @@ function LogCard({ log }){
         <div className="card">
             <li >
                 {editMode ? (
-                    <NewLogForm logValues={{id, sets, reps, weight, distance, time, workout_id}} onCancel={toggleEditMode} isEdit={true}/>
+                    <NewLogForm logValues={{id, sets, reps, weight, distance, time, workout_id}} editLog={handleEditLog} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
                     <div>
                         <p className="card-text">Exercise: <span className="card-value">{exerciseName}</span> </p>

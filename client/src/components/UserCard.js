@@ -58,7 +58,7 @@ function UserCard({ user }){
         <div className="card">
             <li>
                 {editMode ? (
-                    <NewUserForm userValues={{ id, username, email, age, height, weight}} onCancel={toggleEditMode} isEdit={true}/>
+                    <NewUserForm userValues={{ id, username, email, age, height, weight}} editUser={handleEditUser} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
                     <div>
                         <h3 className="card-text">{username}</h3>

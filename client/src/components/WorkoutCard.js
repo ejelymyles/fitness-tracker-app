@@ -58,7 +58,7 @@ function WorkoutCard({ workout }){
         <div className="card">
             <li >
                 {editMode ? (
-                    <NewWorkoutForm workoutValues={{id, user_id, date, duration}} onCancel={toggleEditMode} isEdit={true}/>
+                    <NewWorkoutForm workoutValues={{id, user_id, date, duration}} editWorkout={handleEditWorkout} onCancel={toggleEditMode} isEdit={true}/>
                 ) : (
                     <div>
                         <h3 className="card-text">Workout Session</h3>

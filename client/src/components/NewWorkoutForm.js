@@ -4,9 +4,9 @@ import * as Yup from 'yup';
 import { useParams } from "react-router-dom";
 import { MyContext } from "./MyContext";
 
-function NewWorkoutForm({ onCancel, workoutValues, isEdit }){
+function NewWorkoutForm({ onCancel, editWorkout, workoutValues, isEdit }){
 
-    const { handleEditWorkout, addNewWorkout} = useContext(MyContext);
+    const { addNewWorkout} = useContext(MyContext);
     const { id } = useParams();
 
     const formik = useFormik({
@@ -42,7 +42,7 @@ function NewWorkoutForm({ onCancel, workoutValues, isEdit }){
                     addNewWorkout(workout); //UPDATE STATE
                     resetForm();
                 } else {
-                    handleEditWorkout(workout); //MAKE PATCH (handleEditWorkout)
+                    editWorkout(workout); //MAKE PATCH (handleEditWorkout)
                 }
             })
             .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))
