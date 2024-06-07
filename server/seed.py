@@ -47,17 +47,31 @@ if __name__ == '__main__':
 
         print("Populating exercises...")
 
+        muscle_groups = ["chest", "tricep", "back", "bicep", "shoulder", "trap", "lat", "leg", "abs", "quad", "hamstring", "glute"]
+        actions = ["curl", "press", "raise", "lift", "hold"]
+        description_terms = ["hard", "controlled", "for 30 seconds", "slowly"]
+
         for i in range(20):
 
-            full_description = fake.paragraph(nb_sentences = 2)
-            description_preview = full_description[:25] + '...'
+            # select a random muscle group
+            selected_muscle_group = fake.random_element(elements=muscle_groups) 
+
+            # select a random action 
+            selected_action = fake.random_element(elements=actions)
+
+            # generate random exercise name with selected muscle group and action
+            exercise_name = f"{selected_muscle_group} {selected_action}"
+
+            # create a random description
+            term = fake.random_element(elements=description_terms)
+            description = f"{selected_action} {term}"
 
             exercise = Exercise(
-                name = fake.random_element(elements=("exercise here")), #add fake name
+                name = exercise_name, #add fake name
                 category = fake.random_element(elements=("cardio", "strength")),
-                muscle_group = fake.random_element(elements=("chest", "triceps", "back", "biceps", "shoulders", "traps", "lats", "legs", "abs", "quads", "hamstrings", "glutes")), #add elements 
+                muscle_group = selected_muscle_group, #add elements 
                 equipment = fake.random_element(elements=("barbell", "dumbells ", "kettle ball", "medince ball", "resistance bands")), #add elements 
-                description = description_preview, # or add fake elements of ecercises
+                description = description, # or add fake elements of ecercises
             )
             db.session.add(exercise)
         db.session.commit()
