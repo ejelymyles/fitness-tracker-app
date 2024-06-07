@@ -48,10 +48,10 @@ function NewLogForm({ onCancel, editLog, logValues, isEdit }){
             })
             .then((log) => {
                 if(!isEdit) {
-                    addNewLog(log); //UPDATE STATE
+                    addNewLog(log); 
                     resetForm();
                 } else {
-                    editLog(log) //MAKE PATCH (handleEditLog)
+                    editLog(log)
                 }
             })
             .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))

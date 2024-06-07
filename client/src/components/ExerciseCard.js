@@ -13,7 +13,6 @@ function ExerciseCard({ exercise }){
         setEditMode(!editMode)
     }
 
-    // DELETE SPECIFIC EXERCISE
     const handleDelete = () => {
         fetch(`/exercises/${id}`, {
             method: "DELETE",
@@ -22,14 +21,14 @@ function ExerciseCard({ exercise }){
             if (!response.ok) {
                 throw new Error("Network response error");
             }
-            deleteExercise(id); // UPDATE STATE
+            deleteExercise(id);
         })
         .catch((error) => {
             console.error("There was a problem deleting the user:", error);
         })
     }
 
-    // EDIT SPECIFIC EXERCISE
+    
     const handleEditExercise = (values) => {
         fetch(`/exercises/${id}`, {
             method: "PATCH",
@@ -45,7 +44,7 @@ function ExerciseCard({ exercise }){
             return response.json();
         })
         .then((updatedExercise) => {
-            updateExercise(updatedExercise); //UPDATE STATE 
+            updateExercise(updatedExercise);
             toggleEditMode();
         })
         .catch((error) => {

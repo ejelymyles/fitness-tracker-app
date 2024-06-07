@@ -43,10 +43,10 @@ function NewExerciseForm({ onCancel, editExercise, exerciseValues, isEdit}){
             })
             .then((exercise) => {
                 if(!isEdit) {
-                    addNewExercise(exercise); //UPDATE STATE
+                    addNewExercise(exercise); 
                     resetForm();
                 } else {
-                    editExercise(exercise); //MAKE PATCH REQUEST (handleEditExercise)
+                    editExercise(exercise); 
                 }
             })
             .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))

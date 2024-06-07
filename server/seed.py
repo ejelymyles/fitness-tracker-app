@@ -104,6 +104,7 @@ if __name__ == '__main__':
             distance = randint(0, 500) / 100.0
 
             workout = rc(Workout.query.all())
+            exercise = rc(exercises)
 
             log = Log(
                 sets = randint(3, 4), #add number between 3 & 4

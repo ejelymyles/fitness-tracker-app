@@ -39,10 +39,10 @@ function NewWorkoutForm({ onCancel, editWorkout, workoutValues, isEdit }){
             })
             .then((workout) => {
                 if(!isEdit) {
-                    addNewWorkout(workout); //UPDATE STATE
+                    addNewWorkout(workout); 
                     resetForm();
                 } else {
-                    editWorkout(workout); //MAKE PATCH (handleEditWorkout)
+                    editWorkout(workout); 
                 }
             })
             .catch((err) => setErrors({api: err.errors || ["An error occurred"] }))

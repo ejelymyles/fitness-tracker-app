@@ -10,7 +10,7 @@ function UserProfile() {
 
 const { setWorkouts } = useContext(MyContext);
 
-//fetch user data to display on user profile
+
   useEffect(() => {
     fetch(`/users/${id}`)
       .then((r) => r.json())
@@ -19,7 +19,7 @@ const { setWorkouts } = useContext(MyContext);
       });
   }, [id]);
 
-  //fetch the users workout data to pass to their workoutlist
+  
   useEffect(() => {
     fetch(`/users/${id}/workouts`)
     .then((r) =>r.json())

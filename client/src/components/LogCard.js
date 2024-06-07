@@ -17,7 +17,6 @@ function LogCard({ log }){
         setEditMode(!editMode)
     }
 
-    // DELETE SPECIFIC LOG
     const handleDelete = () => {
         fetch(`/users/${user_id}/workouts/${workout_id}/logs/${id}`, {
             method: "DELETE",
@@ -26,7 +25,7 @@ function LogCard({ log }){
             if (!response.ok) {
                 throw new Error("Network response error");
             }
-            deleteLog(id); // UPDATE STATE
+            deleteLog(id); 
         })
         .catch((error) => {
             console.error("There was a problem deleting the workout:", error);
@@ -34,7 +33,6 @@ function LogCard({ log }){
     }
 
 
-    // EDIT SPECIFIC LOG
     const handleEditLog = (values) => {
         fetch(`/users/${user_id}/workouts/${workout_id}/logs/${id}`, {
             method: "PATCH",
@@ -50,7 +48,7 @@ function LogCard({ log }){
             return response.json();
         })
         .then((updatedLog) => {
-            updateLog(updatedLog); //UPDATE STATE
+            updateLog(updatedLog); 
             toggleEditMode();
         })
         .catch((error) => {

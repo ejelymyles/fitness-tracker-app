@@ -14,7 +14,7 @@ function WorkoutCard({ workout }){
         setEditMode(!editMode)
     }
 
-    // DELETE SPECIFIC WORKOUT
+    
     const handleDelete = () => {
         fetch(`/users/${user_id}/workouts/${id}`, {
             method: "DELETE",
@@ -23,14 +23,14 @@ function WorkoutCard({ workout }){
             if (!response.ok) {
                 throw new Error("Network response error");
             }
-            deleteWorkout(id); //UPDATE STATE
+            deleteWorkout(id); 
         })
         .catch((error) => {
             console.error("There was a problem deleting the workout:", error);
         })
     }
 
-    // EDIT SPECIFIC WORKOUT 
+    
     const handleEditWorkout = (values) => {
         fetch(`/users/${user_id}/workouts/${id}`, {
             method: "PATCH",
@@ -46,7 +46,7 @@ function WorkoutCard({ workout }){
             return response.json();
         })
         .then((updatedWorkout) => {
-            updateWorkout(updatedWorkout); // UPDATE STATE
+            updateWorkout(updatedWorkout); 
             toggleEditMode();
         })
         .catch((error) => {

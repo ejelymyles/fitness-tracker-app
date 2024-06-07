@@ -14,7 +14,7 @@ function UserCard({ user }){
         setEditMode(!editMode)
     }
 
-    // DELETE SPECIFIC USER
+    
     const handleDelete = () => {
         fetch(`/users/${id}`, {
             method: "DELETE",
@@ -23,14 +23,14 @@ function UserCard({ user }){
             if (!response.ok) {
                 throw new Error("Network response error");
             }
-            deleteUser(id); //UPDATE STATE
+            deleteUser(id); 
         })
         .catch((error) => {
             console.error("There was a problem deleting the user:", error);
         })
     }
 
-        //EDIT SPEFICIC USER
+        
     const handleEditUser = (values) => {
         fetch(`/users/${id}`, {
             method: "PATCH",
@@ -46,7 +46,7 @@ function UserCard({ user }){
             return response.json();
         })
         .then((updatedUser) => {
-            updateUser(updatedUser); //UPDATE STATE
+            updateUser(updatedUser); 
             toggleEditMode();
         })
         .catch((error) => {

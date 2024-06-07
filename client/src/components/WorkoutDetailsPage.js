@@ -11,7 +11,7 @@ function WorkoutDetails() {
   const{ setLogs } = useContext(MyContext);
 
 
-  // fetch the users specific workout to dislay on this component
+  
   useEffect(() => {
     fetch(`/users/${user_id}/workouts/${workout_id}`)
       .then((r) => r.json())
@@ -20,7 +20,7 @@ function WorkoutDetails() {
       });
   }, [user_id, workout_id]);
 
-  //fetch the workouts log informtation to pass to loglist component
+  
   useEffect(() => {
     fetch(`/users/${user_id}/workouts/${workout_id}/logs`)
       .then((r) => r.json())
