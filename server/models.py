@@ -8,7 +8,6 @@ from config import db
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
-    #add serialization rules 
     serialize_rules = ('-workouts.user',)
 
     id = db.Column(db.Integer, primary_key=True)
@@ -34,7 +33,7 @@ class User(db.Model, SerializerMixin):
 class Exercise(db.Model, SerializerMixin):
     __tablename__ = 'exercises'
 
-     #add serialization rules 
+
     serialize_rules = ('-logs.exercise',)
     
     id = db.Column(db.Integer, primary_key=True)
@@ -61,7 +60,6 @@ class Exercise(db.Model, SerializerMixin):
 class Workout(db.Model, SerializerMixin):
     __tablename__ = 'workouts'
 
-     #add serialization rules 
     serialize_rules = ('-user.workouts', '-logs.workout',)
 
     id = db.Column(db.Integer, primary_key=True)
@@ -82,7 +80,6 @@ class Workout(db.Model, SerializerMixin):
 class Log(db.Model, SerializerMixin):
     __tablename__ = 'logs'
 
-    #add serialization rules 
     serialize_rules = ('-exercise.logs', '-workout.logs',)
 
     id = db.Column(db.Integer, primary_key=True)

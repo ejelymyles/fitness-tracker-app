@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-
 # Standard library imports
-
 # Remote library imports
 from flask import request, make_response, jsonify
 from flask_restful import Resource
@@ -12,9 +10,6 @@ from config import app, db, api
 from models import User, Exercise, Workout, Log
 from datetime import datetime
 from sqlalchemy.orm import RelationshipProperty
-
-
-
 
 class Users(Resource):
     def get(self):
@@ -34,9 +29,7 @@ class Users(Resource):
         db.session.commit()
         return make_response(new_user.to_dict(), 201)
 
-
 api.add_resource(Users, '/users')
-
 
 
 class UsersByID(Resource):
@@ -60,18 +53,13 @@ class UsersByID(Resource):
         else:
             return{"Error": "User not found"}, 404
 
-
     def delete(self, id):
         user = User.query.filter_by(id=id).first()
         db.session.delete(user)
         db.session.commit()
         return make_response({}, 204)
 
-
 api.add_resource(UsersByID, '/users/<int:id>')
-
-
-
 
 
 class Workouts(Resource):
@@ -90,7 +78,6 @@ class Workouts(Resource):
         db.session.add(new_workout)
         db.session.commit()
         return make_response(new_workout.to_dict(), 201)
-
 
 api.add_resource(Workouts, '/users/<int:user_id>/workouts')
 
@@ -125,7 +112,6 @@ class WorkoutsByID(Resource):
         else:
             return{"Error": "Workout not found"}, 404
 
-
     def delete(self, user_id, workout_id):
         workout = Workout.query.filter_by(user_id=user_id, id=workout_id).first()
         if not workout:
@@ -135,10 +121,7 @@ class WorkoutsByID(Resource):
         db.session.commit()
         return {'message': 'Workout deleted successfully'}, 204
 
-
 api.add_resource(WorkoutsByID, '/users/<int:user_id>/workouts/<int:workout_id>')
-
-
 
 
 class Logs(Resource):
@@ -179,7 +162,6 @@ class LogsByID(Resource):
             return {'message': 'Log not found'}, 404
         return log.to_dict(), 200
         
-
     def patch(self, user_id, workout_id, log_id):
         workout = Workout.query.filter_by(user_id=user_id, id=workout_id).first()
         if not workout:
@@ -206,8 +188,6 @@ class LogsByID(Resource):
         else:
             return{"Error": "Log not found"}, 404
 
-
-
     def delete(self, user_id, workout_id, log_id):
         workout = Workout.query.filter_by(user_id=user_id, id=workout_id).first()
         if not workout:
@@ -221,14 +201,7 @@ class LogsByID(Resource):
         db.session.commit()
         return{'message': 'Log deleted succesfully'}, 204
 
-
 api.add_resource(LogsByID, '/users/<int:user_id>/workouts/<int:workout_id>/logs/<int:log_id>')
-
-
-
-
-
-
 
 
 class Exercises(Resource):
@@ -250,8 +223,6 @@ class Exercises(Resource):
         return make_response(new_exercise.to_dict(), 201)
 
 api.add_resource(Exercises, '/exercises')
-
-
 
 class ExercisesByID(Resource):
     def get(self, id):

@@ -7,7 +7,6 @@ from datetime import datetime
 # Remote library imports
 from faker import Faker
 
-
 # Local imports
 from app import app
 from models import db, User, Exercise, Workout, Log
@@ -38,9 +37,9 @@ if __name__ == '__main__':
             user = User(
                 username = username,
                 email = email,
-                age =  randint(15, 75), #add number between 15 & 75
-                height = randint(48, 84), # add height between 4 feet & 7 feet (48-84 inches)
-                weight = randint(70, 300), # add weight between 70 & 300
+                age =  randint(15, 75), 
+                height = randint(48, 84), 
+                weight = randint(70, 300), 
             )
             db.session.add(user)
         db.session.commit()
@@ -67,11 +66,11 @@ if __name__ == '__main__':
             description = f"{selected_action} {term}"
 
             exercise = Exercise(
-                name = exercise_name, #add fake name
+                name = exercise_name, 
                 category = fake.random_element(elements=("cardio", "strength")),
-                muscle_group = selected_muscle_group, #add elements 
-                equipment = fake.random_element(elements=("barbell", "dumbells ", "kettle ball", "medince ball", "resistance bands")), #add elements 
-                description = description, # or add fake elements of ecercises
+                muscle_group = selected_muscle_group, 
+                equipment = fake.random_element(elements=("barbell", "dumbells ", "kettle ball", "medince ball", "resistance bands")), 
+                description = description, 
             )
             db.session.add(exercise)
         db.session.commit()
@@ -90,8 +89,8 @@ if __name__ == '__main__':
             exercise = rc(exercises)
 
             workout = Workout(
-                date = fake.date_between(start_date=start_date, end_date=end_date), #add fake date during the year of 2024
-                duration = randint(6, 30) * 5 , #add fake time between 30 minutes and 150 minutes in increments of 5
+                date = fake.date_between(start_date=start_date, end_date=end_date), 
+                duration = randint(6, 30) * 5 , 
                 user = user
             )
             db.session.add(workout)
@@ -107,11 +106,11 @@ if __name__ == '__main__':
             exercise = rc(exercises)
 
             log = Log(
-                sets = randint(3, 4), #add number between 3 & 4
-                reps = randint(5, 20), #add number between 5 & 20
-                weight = randint(1, 60) * 5, #add number greater than 5 in increments of 5
-                distance = distance, # add decimal number between 0 & 5 (miles)
-                time = randint(30, 90), # add time betweem 30 & 90 seconds 
+                sets = randint(3, 4), 
+                reps = randint(5, 20), 
+                weight = randint(1, 60) * 5, 
+                distance = distance, 
+                time = randint(30, 90), 
                 exercise = exercise,
                 workout = workout
             )
