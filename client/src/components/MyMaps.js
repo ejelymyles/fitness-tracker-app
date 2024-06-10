@@ -4,8 +4,8 @@ import { GoogleMap, LoadScript, Autocomplete, Marker, InfoWindow } from '@react-
 const libraries = ['places'];
 
 const mapContainerStyle = {
-  width: '100vw',
-  height: '100vh',
+  width: '99vw',
+  height: '81vh',
 };
 
 const center = {
