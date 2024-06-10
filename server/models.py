@@ -23,7 +23,7 @@ class User(db.Model, SerializerMixin):
             raise ValueError('Email must contain "@" and end with ".com"')
         return email 
 
-    #ONE-to-many relationship with Workouts"
+    #ONE-to-many relationship with Workouts
     workouts = db.relationship('Workout', back_populates="user")
 
     def __repr__(self):
